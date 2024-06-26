@@ -82,6 +82,23 @@ class FirebaseAuthController {
             });
     }
 
+    resetPassword(req, res) {
+        const { email } = req.body;
+        if (!email) {
+            return res.status(422).json({
+                email: "Veuillez entrer une adresse mail valide."
+            });
+        }
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                res.status(200).json({ message: "Un email a bien été envoyé ! Vous pouvez changer de mot de passe." });
+            })
+            .catch((error) => {
+                console.error(error);
+                res.status(500).json({ error: "Erreur de serveur interne." });
+            });
+    }
+
 }
 
 
