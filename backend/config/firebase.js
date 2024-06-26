@@ -1,5 +1,7 @@
 require("dotenv").config();
 const firebase = require("firebase/app");
+const admin = require('firebase-admin');
+const serviceAccount = require("../firebaseService.json");
 
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -11,6 +13,10 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
 
 const {
     getAuth,
