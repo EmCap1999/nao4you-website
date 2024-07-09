@@ -9,6 +9,12 @@ const app = express();
 app.use(express.json())
 app.use(cookieParser())
 app.use(router);
+app.use(
+    cors({
+      credentials: true,
+      origin: ["http://localhost:4200"],
+    })
+  );
 
 app.get('/', (req, res) => {
     res.send('Hello World');
