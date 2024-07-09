@@ -1,5 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const router = require('./routes');
 require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 
@@ -7,6 +8,7 @@ const app = express();
 
 app.use(express.json())
 app.use(cookieParser())
+app.use(router);
 
 app.get('/', (req, res) => {
     res.send('Hello World');
