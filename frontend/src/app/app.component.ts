@@ -1,18 +1,39 @@
 import { Component } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { StorageService } from './_services/storage.service';
+import { AuthService } from './_services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  private roles: string[] = [];
+  isLoggedIn = false;
+  email?: string;
 
-  constructor(private modalService: NgbModal) {
+  constructor(private storageService: StorageService, private authService: AuthService) { }
+
+  ngOnInit(): void {
+    this.isLoggedIn = this.storageService.isLoggedIn();
+
+    if (this.isLoggedIn) {
+      const user = this.storageService.getUser();
+      this.email = user.email;
+    }
   }
 
-  public open(modal: any): void {
-    this.modalService.open(modal);
-  }
+  logout(): void {
+    this.authService.logout().subscribe({
+      next: res => {
+        console.log(res);
+        this.storageService.clean();
 
+        window.location.reload();
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
+  }
 }

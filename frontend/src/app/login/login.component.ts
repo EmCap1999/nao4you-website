@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-
     this.authService.login(this.form).subscribe({
       next: data => {
         this.storageService.saveUser(data);

@@ -18,7 +18,7 @@ export class AuthService {
   login(form: any): Observable<any> {
     return this.http.post(
       AUTH_API + 'login',
-      { form },
+      form,
       httpOptions
     );
   }
