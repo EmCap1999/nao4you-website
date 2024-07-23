@@ -16,6 +16,7 @@ export class RegisterComponent {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
+  message = '';
 
   constructor(private authService: AuthService) { }
 
@@ -23,12 +24,12 @@ export class RegisterComponent {
 
     this.authService.register(this.form).subscribe({
       next: data => {
-        console.log(data);
+        this.message = data.message;
         this.isSuccessful = true;
         this.isSignUpFailed = false;
       },
       error: err => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = err.error.error;
         this.isSignUpFailed = true;
       }
     });

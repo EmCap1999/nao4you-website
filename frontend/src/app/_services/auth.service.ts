@@ -1,18 +1,18 @@
-import { AUTH_API } from '../../config';
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { AUTH_API } from '../../config';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  withCredentials: true
 };
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+
   constructor(private http: HttpClient) { }
 
   login(form: any): Observable<any> {
@@ -25,8 +25,8 @@ export class AuthService {
 
   register(form: any): Observable<any> {
     return this.http.post(
-      AUTH_API + 'regiser',
-      { form },
+      AUTH_API + 'register',
+      form,
       httpOptions
     );
   }
@@ -34,6 +34,7 @@ export class AuthService {
   logout(): Observable<any> {
     return this.http.post(
       AUTH_API + 'logout',
+      {},
       httpOptions
     );
   }

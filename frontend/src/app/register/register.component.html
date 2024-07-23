@@ -38,12 +38,14 @@
 
             @if (f.submitted && isSignUpFailed) {
             <div class="alert alert-warning">
-                Vous êtes inscrit sur la plateforme Nao4You.<br />{{ errorMessage }}
+                {{ errorMessage }}
             </div>
             }
         </form>
         } @else {
-        <div class="alert alert-success"></div>
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
         }
     </div>
 </div>

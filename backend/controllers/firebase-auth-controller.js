@@ -4,12 +4,54 @@ const {
     signInWithEmailAndPassword,
     signOut,
     sendEmailVerification,
-    sendPasswordResetEmail
+    sendPasswordResetEmail,
+    updateProfile
 } = require('../config/firebase');
 
 const auth = getAuth();
 
 class FirebaseAuthController {
+
+
+    // sign in with email and password.
+    loginUser(req, res) {
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(422).json({
+                email: "Veuillez entrer une adresse mail.",
+                password: "Veuillez entrer un mot de passe.",
+            });
+        }
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+
+                // Vérifier si l'email est vérifié
+                if (!user.emailVerified) {
+                    return res.status(403).json({
+                        error: "Veuillez vérifier votre adresse email avant de vous connecter."
+                    });
+                }
+
+                const idToken = userCredential._tokenResponse.idToken;
+                if (idToken) {
+                    res.cookie('access_token', idToken, {
+                        httpOnly: true
+                    });
+                    res.status(200).json({ message: "Le membre est bien connecté.", userCredential });
+                } else {
+                    res.status(500).json({ error: "Erreur de serveur interne." });
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                const errorMessage = error.message || "Une erreur est survenue lors de la connexion.";
+                res.status(500).json({ error: errorMessage });
+            });
+    }
+
 
     // sign up with email and password.
     registerUser(req, res) {
@@ -35,36 +77,6 @@ class FirebaseAuthController {
             })
             .catch((error) => {
                 const errorMessage = error.message || "Une erreur est survenue lors de la création du nouveau membre.";
-                res.status(500).json({ error: errorMessage });
-            });
-    }
-
-    // sign in with email and password.
-    loginUser(req, res) {
-        const { email, password } = req.body;
-
-        if (!email || !password) {
-            return res.status(422).json({
-                email: "Veuillez entrer une adresse mail.",
-                password: "Veuillez entrer un mot de passe.",
-            });
-        }
-
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const idToken = userCredential._tokenResponse.idToken
-                if (idToken) {
-                    res.cookie('access_token', idToken, {
-                        httpOnly: true
-                    });
-                    res.status(200).json({ message: "Le membre est bien connecté.", userCredential });
-                } else {
-                    res.status(500).json({ error: "Erreur de serveur interne." });
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-                const errorMessage = error.message || "Une erreur est survenur lors de la connexion.";
                 res.status(500).json({ error: errorMessage });
             });
     }
@@ -98,8 +110,6 @@ class FirebaseAuthController {
                 res.status(500).json({ error: "Erreur de serveur interne." });
             });
     }
-
 }
-
 
 module.exports = new FirebaseAuthController();
