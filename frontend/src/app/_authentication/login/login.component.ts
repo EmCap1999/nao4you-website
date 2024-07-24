@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
-import { StorageService } from '../_services/storage.service';
+import { AuthService } from '../../_services/auth.service';
+import { StorageService } from '../../_services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   };
   isLoggedIn = false;
   isLoginFailed = false;
-  errorMessage = '';
+  message = '';
 
   constructor(private authService: AuthService, private storageService: StorageService) { }
 
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
         this.reloadPage();
       },
       error: err => {
-        this.errorMessage = err.error.error;
+        this.message = err.error.message;
         this.isLoginFailed = true;
       }
     });

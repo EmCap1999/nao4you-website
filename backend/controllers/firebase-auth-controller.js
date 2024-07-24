@@ -4,14 +4,12 @@ const {
     signInWithEmailAndPassword,
     signOut,
     sendEmailVerification,
-    sendPasswordResetEmail,
-    updateProfile
+    sendPasswordResetEmail
 } = require('../config/firebase');
 
 const auth = getAuth();
 
 class FirebaseAuthController {
-
 
     // sign in with email and password.
     loginUser(req, res) {
@@ -31,7 +29,7 @@ class FirebaseAuthController {
                 // Vérifier si l'email est vérifié
                 if (!user.emailVerified) {
                     return res.status(403).json({
-                        error: "Veuillez vérifier votre adresse email avant de vous connecter."
+                        message: "Veuillez vérifier votre adresse mail avant de vous connecter."
                     });
                 }
 
@@ -42,13 +40,13 @@ class FirebaseAuthController {
                     });
                     res.status(200).json({ message: "Le membre est bien connecté.", userCredential });
                 } else {
-                    res.status(500).json({ error: "Erreur de serveur interne." });
+                    res.status(500).json({ message: "Erreur de serveur interne." });
                 }
             })
             .catch((error) => {
                 console.error(error);
                 const errorMessage = error.message || "Une erreur est survenue lors de la connexion.";
-                res.status(500).json({ error: errorMessage });
+                res.status(500).json({ message: errorMessage });
             });
     }
 
@@ -72,12 +70,12 @@ class FirebaseAuthController {
                     })
                     .catch((error) => {
                         console.error(error);
-                        res.status(500).json({ error: "Problème d'envoi d'email de vérification." });
+                        res.status(500).json({ message: "Problème d'envoi d'email de vérification." });
                     });
             })
             .catch((error) => {
                 const errorMessage = error.message || "Une erreur est survenue lors de la création du nouveau membre.";
-                res.status(500).json({ error: errorMessage });
+                res.status(500).json({ message: errorMessage });
             });
     }
 
@@ -90,7 +88,7 @@ class FirebaseAuthController {
             })
             .catch((error) => {
                 console.error(error);
-                res.status(500).json({ error: "Erreur de serveur interne." });
+                res.status(500).json({ message: "Erreur de serveur interne." });
             });
     }
 
@@ -107,7 +105,7 @@ class FirebaseAuthController {
             })
             .catch((error) => {
                 console.error(error);
-                res.status(500).json({ error: "Erreur de serveur interne." });
+                res.status(500).json({ message: "Erreur de serveur interne." });
             });
     }
 }
