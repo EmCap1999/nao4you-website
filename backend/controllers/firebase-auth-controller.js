@@ -12,7 +12,7 @@ const {
     signInWithEmailAndPassword,
     signOut,
     sendEmailVerification,
-    sendPasswordResetEmail
+    sendPasswordResetEmail,
 } = require('../config/firebase');
 
 const auth = getAuth();

@@ -2,7 +2,6 @@ const handleAuthenticationError = (error, res) => {
     console.log(error.code);
     let errorMessage;
 
-
     switch (error.code) {
         case 'auth/user-disabled':
             errorMessage = "Ce compte utilisateur a été désactivé.";
@@ -93,11 +92,39 @@ const handleLogoutError = (error, res) => {
     res.status(500).json({ message: "Erreur de serveur interne." });
 };
 
+const handleTokenVerificationError = (error, res) => {
+    console.log(error.code);
+    let errorMessage;
+
+    switch (error.code) {
+        case 'auth/argument-error':
+            errorMessage = 'Le format du token est invalide.';
+            res.status(400).json({ message: errorMessage });
+            break;
+        case 'auth/id-token-expired':
+            errorMessage = 'Le token a expiré.';
+            res.status(401).json({ message: errorMessage });
+            break;
+        case 'auth/id-token-revoked':
+            errorMessage = 'Le token a été révoqué.';
+            res.status(401).json({ message: errorMessage });
+            break;
+        case 'auth/invalid-id-token':
+            errorMessage = 'Le token fourni est invalide.';
+            res.status(403).json({ message: errorMessage });
+            break;
+        default:
+            errorMessage = 'Non-autorisé.';
+            res.status(403).json({ message: errorMessage });
+            break;
+    }
+};
 
 module.exports = {
     handleAuthenticationError,
     handleUserCreationError,
     handleEmailVerificationError,
     handlePasswordResetError,
-    handleLogoutError
+    handleLogoutError,
+    handleTokenVerificationError
 };
