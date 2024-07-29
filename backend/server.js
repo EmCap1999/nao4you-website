@@ -1,19 +1,20 @@
-const express = require('express');
-const cookieParser = require('cookie-parser');
-const router = require('./routes');
 require("dotenv").config();
-const PORT = process.env.PORT || 8080;
+const express = require('express');
+const cors = require('cors');
 
 const app = express();
 
-app.use(express.json())
-app.use(cookieParser())
-app.use(router);
+app.use(cors({
+  origin: process.env.FRONTEND_URL,
+  credentials: true
+}));
 
-app.get('/', (req, res) => {
-    res.send('Hello World');
-});
 
-app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+require('./routes/index')(app);
+
+app.listen(process.env.PORT, () => {
+  console.log(`Listening...`);
 });

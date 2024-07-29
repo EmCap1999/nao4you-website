@@ -1,0 +1,11 @@
+@if (currentUser) {
+<div class="container">
+    <header class="jumbotron">
+        <h3>
+            Profil de : <strong>{{ currentUser.userCredential.user.email }}</strong>
+        </h3>
+    </header>
+</div>
+} @else {
+<p>Veuillez vous connecter.</p>
+}

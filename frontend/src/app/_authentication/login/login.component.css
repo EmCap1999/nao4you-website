@@ -1,0 +1,35 @@
+.link-custom,
+.btn-custom {
+    color: rgba(185, 136, 174, 255);
+}
+
+.link-custom {
+    text-decoration: none;
+}
+
+.link-custom:hover,
+.btn-custom:hover {
+    color: rgba(185, 136, 174, 255);
+}
+
+.btn-custom {
+    background-color: rgba(173, 132, 168, 255);
+    border-color: rgba(173, 132, 168, 255);
+    color: white;
+}
+
+.btn-custom:hover {
+    background-color: rgba(173, 132, 168, 0.8);
+    border-color: rgba(173, 132, 168, 0.8);
+    color: white;
+}
+
+.alert-success {
+    background-color: rgba(174, 132, 170, 0.1);
+    border-color: rgba(174, 132, 170, 0.2);
+}
+
+.alert-danger {
+    background-color: rgba(255, 0, 0, 0.1);
+    border-color: rgba(255, 0, 0, 0.2);
+}
