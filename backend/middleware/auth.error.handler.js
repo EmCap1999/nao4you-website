@@ -101,6 +101,10 @@ const handleTokenVerificationError = (error, res) => {
             errorMessage = 'Le format du token est invalide.';
             res.status(400).json({ message: errorMessage });
             break;
+        case 'auth/user-not-found':
+            errorMessage = 'Utilisateur non trouvé ou supprimé.';
+            res.status(403).json({ message: errorMessage });
+            break;
         case 'auth/id-token-expired':
             errorMessage = 'Le token a expiré.';
             res.status(401).json({ message: errorMessage });

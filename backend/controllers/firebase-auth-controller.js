@@ -13,6 +13,7 @@ const {
     signOut,
     sendEmailVerification,
     sendPasswordResetEmail,
+    admin
 } = require('../config/firebase');
 
 const auth = getAuth();
@@ -20,38 +21,43 @@ const auth = getAuth();
 class FirebaseAuthController {
 
     // sign in
-    loginUser(req, res) {
+    loginUser = async (req, res) => {
         const { email, password } = req.body;
 
-        if (!email || !password) {
-            return res.status(422).json({ message: "Veuillez compléter le(s) champ(s) vide(s)" });
-        }
+        try {
+            if (!email || !password) {
+                return res.status(422).json({ message: "Veuillez compléter le(s) champ(s) vide(s)" });
+            }
 
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
 
-                if (!user.emailVerified) {
-                    return res.status(403).json({
-                        message: "Veuillez vérifier votre adresse mail avant de vous connecter."
-                    });
-                }
+            if (!user.emailVerified) {
+                return res.status(403).json({
+                    message: "Veuillez vérifier votre adresse mail avant de vous connecter."
+                });
+            }
 
-                const idToken = userCredential._tokenResponse.idToken;
+            const claims = { claims: { email: user.email, } }
+            await admin.auth().setCustomUserClaims(user.uid, claims);
 
-                if (idToken != null) {
-                    res.cookie('access_token', idToken, {
-                        httpOnly: true
-                    });
-                    res.status(200).json({ message: "Le membre est bien connecté.", userCredential });
-                } else {
-                    res.status(500).json({ message: "Erreur de serveur interne." });
-                }
-            })
-            .catch((error) => {
-                handleAuthenticationError(error, res);
+            const newToken = await user.getIdToken();
+            res.cookie('access_token', newToken, {
+                httpOnly: true,
+                secure: true,
+                sameSite: 'Strict'
             });
-    }
+
+            const decodedToken = await admin.auth().verifyIdToken(newToken);
+            req.user = decodedToken;
+
+            return res.status(200).json({ claims: req.user.claims });
+
+        } catch (error) {
+            return handleAuthenticationError(error, res);
+        }
+    };
+
 
 
     // sign up

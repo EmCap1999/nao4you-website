@@ -1,4 +1,5 @@
 const firebaseAuthController = require('../controllers/firebase-auth-controller');
+const { verifyToken } = require('../middleware/access.token');
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -13,4 +14,6 @@ module.exports = function (app) {
   app.post('/api/login', firebaseAuthController.loginUser);
   app.post('/api/logout', firebaseAuthController.logoutUser);
   app.post('/api/reset-password', firebaseAuthController.resetPassword);
+  app.get('/api/access', verifyToken, (req, res) => { res.status(200).json({ claims: req.user.claims }); });
+
 };
