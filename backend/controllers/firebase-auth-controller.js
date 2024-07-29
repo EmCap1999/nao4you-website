@@ -20,7 +20,6 @@ const auth = getAuth();
 
 class FirebaseAuthController {
 
-    // sign in
     loginUser = async (req, res) => {
         const { email, password } = req.body;
 
