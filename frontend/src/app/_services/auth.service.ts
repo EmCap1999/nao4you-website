@@ -38,4 +38,11 @@ export class AuthService {
       httpOptions
     );
   }
+
+  verifyToken(): Observable<any> {
+    return this.http.get(
+      AUTH_API + 'access',
+      httpOptions
+    );
+  }
 }
