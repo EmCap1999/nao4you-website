@@ -77,12 +77,9 @@ class FirebaseAuthController {
       .then(() => {
         return sendEmailVerification(auth.currentUser)
           .then(() => {
-            res
-              .status(201)
-              .json({
-                message:
-                  'Un email a été envoyé ! Veuillez vérifier votre compte.'
-              })
+            res.status(201).json({
+              message: 'Un email a été envoyé ! Veuillez vérifier votre compte.'
+            })
           })
           .catch((error) => {
             handleEmailVerificationError(error, res)
@@ -117,12 +114,10 @@ class FirebaseAuthController {
     }
     sendPasswordResetEmail(auth, email)
       .then(() => {
-        res
-          .status(200)
-          .json({
-            message:
-              'Un email a bien été envoyé ! Vous pouvez changer de mot de passe.'
-          })
+        res.status(200).json({
+          message:
+            'Un email a bien été envoyé ! Vous pouvez changer de mot de passe.'
+        })
       })
       .catch((error) => {
         handlePasswordResetError(error, res)
