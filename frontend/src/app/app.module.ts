@@ -29,7 +29,7 @@ import { httpInterceptorProviders } from './_helpers/http.interceptor.service';
     NgbModule,
     AppRoutingModule,
     FormsModule,
-    NgOptimizedImage 
+    NgOptimizedImage
   ],
   providers: [provideHttpClient(), httpInterceptorProviders],
   bootstrap: [AppComponent]

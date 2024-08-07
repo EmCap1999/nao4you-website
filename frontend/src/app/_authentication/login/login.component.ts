@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from '../../_services/auth.service';
-import { StorageService } from '../../_services/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,35 +12,72 @@ export class LoginComponent implements OnInit {
     email: null,
     password: null
   };
-  isLoggedIn = false;
-  isLoginFailed = false;
-  message = '';
+  isLoggedIn: boolean = false;
+  isLoginFailed: boolean = false;
+  isLoading: boolean = false;
+  message: string = '';
 
-  constructor(private authService: AuthService, private storageService: StorageService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private cd: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void {
-    if (this.storageService.isLoggedIn()) {
-      this.isLoggedIn = true;
-    }
-  }
-
-  onSubmit(): void {
-    this.authService.login(this.form).subscribe({
-      next: data => {
-        this.storageService.saveUser(data);
-
-        this.isLoginFailed = false;
+    this.isLoading = true;
+    this.authService.verifyToken().subscribe({
+      next: (claims) => {
         this.isLoggedIn = true;
-        this.reloadPage();
+        this.isLoading = false;
+        this.cd.detectChanges();
       },
       error: err => {
         this.message = err.error.message;
-        this.isLoginFailed = true;
+        this.isLoggedIn = false;
+        this.isLoading = false;
+        this.cd.detectChanges();
       }
     });
   }
 
-  reloadPage(): void {
-    window.location.reload();
+  onSubmit(): void {
+    this.isLoading = true;
+    this.authService.login(this.form).subscribe({
+      next: claims => {
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.isLoading = false;
+        this.cd.detectChanges();
+      },
+      error: err => {
+        this.message = err.error.message;
+        this.isLoginFailed = true;
+        this.isLoading = false;
+        this.cd.detectChanges();
+      }
+    });
+  }
+
+  logout(): void {
+    this.isLoading = true;
+    this.authService.logout().subscribe({
+      next: () => {
+        this.isLoggedIn = false;
+        this.isLoading = false;
+        this.resetForm();
+        this.router.navigate(['/login']);
+        this.cd.detectChanges();
+      },
+      error: err => {
+        this.message = err.error.message;
+        this.isLoading = false;
+        this.cd.detectChanges();
+      }
+    });
+  }
+
+  resetForm(): void {
+    this.form.email = '';
+    this.form.password = '';
   }
 }

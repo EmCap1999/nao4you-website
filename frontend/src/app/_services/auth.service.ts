@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AUTH_API } from '../../config';
+import { AUTH_API } from '../../../config';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -35,6 +35,13 @@ export class AuthService {
     return this.http.post(
       AUTH_API + 'logout',
       {},
+      httpOptions
+    );
+  }
+
+  verifyToken(): Observable<any> {
+    return this.http.get(
+      AUTH_API + 'access',
       httpOptions
     );
   }

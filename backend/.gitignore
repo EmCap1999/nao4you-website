@@ -1,4 +1,6 @@
 # .gitignore
 .env
+eslint.config.mjs
 node_modules
 FirebaseService.json
+.prettierrc

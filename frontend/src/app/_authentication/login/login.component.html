@@ -12,17 +12,24 @@
                         </div>
                         <h2 class="fs-6 fw-normal text-center text-secondary mb-4">Connectez-vous à votre compte</h2>
 
+                        <!-- Loading Indicator -->
+                        <div *ngIf="isLoading" class="text-center mb-4">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+
                         <!-- While user is not logged in -->
-                        <div *ngIf="!isLoggedIn">
+                        <div *ngIf="!isLoggedIn && !isLoading">
                             <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
                                 <div class="row gy-2 overflow-hidden">
 
                                     <!-- User's email address -->
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
-                                            <input type="email" class="form-control" name="email"
+                                            <input type="email" class="form-control" id="email" name="email"
                                                 [(ngModel)]="form.email" required #email="ngModel"
-                                                placeholder="name@example.com"
+                                                placeholder="name@example.com" autocomplete="email"
                                                 [ngClass]="{ 'is-invalid': f.submitted && email.errors }" />
                                             <label for="email" class="form-label">Adresse mail</label>
                                             <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
@@ -35,7 +42,7 @@
                                     <!-- User's password -->
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
-                                            <input type="password" class="form-control" name="password"
+                                            <input type="password" class="form-control" id="password" name="password"
                                                 [(ngModel)]="form.password" required minlength="6" #password="ngModel"
                                                 placeholder="Mot de passe"
                                                 [ngClass]="{ 'is-invalid': f.submitted && password.errors }" />
@@ -63,8 +70,7 @@
                                     <!-- Sign up -->
                                     <div class="col-12">
                                         <p class="m-0 text-secondary text-center">Vous n'avez pas de compte ? <a
-                                                href="register" class="link-custom">Inscrivez-vous</a>
-                                        </p>
+                                                href="register" class="link-custom">Inscrivez-vous</a></p>
                                     </div>
 
                                     <!-- Errors management -->
@@ -78,9 +84,12 @@
                             </form>
                         </div>
 
-                        <!-- When user is logged in -->
-                        <div *ngIf="isLoggedIn" class="alert alert-success">
+                        <!-- Log Out -->
+                        <div *ngIf="isLoggedIn && !isLoading" class="alert alert-success text-center">
                             Utilisateur bien connecté.
+                            <div class="d-grid mt-3">
+                                <button (click)="logout()" class="btn btn-custom btn-lg">Se déconnecter</button>
+                            </div>
                         </div>
                     </div>
                 </div>
