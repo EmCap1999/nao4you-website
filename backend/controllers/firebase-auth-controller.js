@@ -20,30 +20,32 @@ const auth = getAuth()
 
 class FirebaseAuthController {
   loginUser = async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password } = req.body
 
     try {
       if (!email || !password) {
-        return handleAuthenticationError('missing-item', res);
+        return handleAuthenticationError('missing-item', res)
       }
 
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
-      );
+      )
 
-      const user = userCredential.user;
+      const user = userCredential.user
 
       if (!user.emailVerified) {
-        return handleAuthenticationError('email-not-verified', res);
+        return handleAuthenticationError('email-not-verified', res)
       }
 
-      const customToken = await admin.auth().createCustomToken(user.uid, { email: user.email });
+      const customToken = await admin
+        .auth()
+        .createCustomToken(user.uid, { email: user.email })
 
-      res.cookie('access-token', customToken, { httpOnly: true, secure: true });
+      res.cookie('access-token', customToken, { httpOnly: true, secure: true })
 
-      return res.status(200).send({ message: 'Utilisateur bien connecté.' });
+      return res.status(200).send({ message: 'Utilisateur bien connecté.' })
     } catch (error) {
       return handleAuthenticationError(error, res)
     }
@@ -51,21 +53,21 @@ class FirebaseAuthController {
 
   // sign up
   registerUser(req, res) {
-    const { email, password } = req.body;
+    const { email, password } = req.body
 
     if (!email || !password) {
-      return handleUserCreationError('missing-item', res);
+      return handleUserCreationError('missing-item', res)
     }
 
     createUserWithEmailAndPassword(auth, email, password)
       .then(async () => {
         try {
-          await sendEmailVerification(auth.currentUser);
+          await sendEmailVerification(auth.currentUser)
           res.status(201).json({
             message: 'Un email a été envoyé ! Veuillez vérifier votre compte.'
-          });
+          })
         } catch (error) {
-          handleEmailVerificationError(error, res);
+          handleEmailVerificationError(error, res)
         }
       })
       .catch((error) => {
@@ -89,9 +91,9 @@ class FirebaseAuthController {
 
   // reset password
   resetPassword(req, res) {
-    const { email } = req.body;
+    const { email } = req.body
     if (!email) {
-      return handlePasswordResetError('missing-item', res);
+      return handlePasswordResetError('missing-item', res)
     }
     sendPasswordResetEmail(auth, email)
       .then(() => {
@@ -101,7 +103,7 @@ class FirebaseAuthController {
         })
       })
       .catch((error) => {
-        handlePasswordResetError(error, res);
+        handlePasswordResetError(error, res)
       })
   }
 }

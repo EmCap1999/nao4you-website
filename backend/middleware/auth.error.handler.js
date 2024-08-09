@@ -15,10 +15,6 @@ const handleAuthenticationError = (error, res) => {
       errorMessage = 'Ce compte utilisateur a été désactivé.'
       res.status(403).json({ message: errorMessage })
       break
-    case 'auth/user-disabled':
-      errorMessage = 'Ce compte utilisateur a été désactivé.'
-      res.status(403).json({ message: errorMessage })
-      break
     case 'auth/invalid-credential':
       errorMessage = 'Adresse mail et/ou mot de passe incorrect(s).'
       res.status(403).json({ message: errorMessage })
@@ -119,7 +115,7 @@ const handleTokenVerificationError = (error, res) => {
 
   switch (error) {
     case 'user-disconnected':
-      errorMessage = "L'utilisateur est déconnecté.";
+      errorMessage = "L'utilisateur est déconnecté."
       res.status(403).json({ message: errorMessage })
       break
     case 'auth/argument-error':
