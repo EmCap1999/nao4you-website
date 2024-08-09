@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../../_services/auth.service';
+import { Component } from '@angular/core'
+import { AuthService } from '../../_services/auth.service'
 
 @Component({
   selector: 'app-register',
@@ -11,25 +11,25 @@ export class RegisterComponent {
     username: null,
     email: null,
     password: null,
-  };
+  }
 
-  isSuccessful = false;
-  isSignUpFailed = false;
-  message = '';
+  isSuccessful = false
+  isSignUpFailed = false
+  message = ''
 
   constructor(private authService: AuthService) {}
 
   onSubmit(): void {
     this.authService.register(this.form).subscribe({
       next: (data) => {
-        this.message = data.message;
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
+        this.message = data.message
+        this.isSuccessful = true
+        this.isSignUpFailed = false
       },
       error: (err) => {
-        this.message = err.error.message;
-        this.isSignUpFailed = true;
+        this.message = err.error.message
+        this.isSignUpFailed = true
       },
-    });
+    })
   }
 }
