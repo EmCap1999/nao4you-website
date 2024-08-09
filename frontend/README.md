@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Prettier (Formater) - Husky (git hooks) and lint-staged
 
-https://prettier.io/docs/en/install
+https://prettier.io/docs/en/install --- '$npx prettier . --write (format all files) $npx prettier . --check (check format in all files)'
 
 ## Development server
 
