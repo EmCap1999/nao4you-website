@@ -1,8 +1,20 @@
 const handleAuthenticationError = (error, res) => {
-  console.log(error.code)
   let errorMessage
 
-  switch (error.code) {
+  switch (error) {
+    case 'missing-item':
+      errorMessage = 'Veuillez compléter le(s) champ(s) vide(s).'
+      res.status(422).json({ message: errorMessage })
+      break
+    case 'email-not-verified':
+      errorMessage =
+        'Veuillez vérifier votre adresse mail avant de vous connecter.'
+      res.status(403).json({ message: errorMessage })
+      break
+    case 'auth/user-disabled':
+      errorMessage = 'Ce compte utilisateur a été désactivé.'
+      res.status(403).json({ message: errorMessage })
+      break
     case 'auth/user-disabled':
       errorMessage = 'Ce compte utilisateur a été désactivé.'
       res.status(403).json({ message: errorMessage })
@@ -20,10 +32,13 @@ const handleAuthenticationError = (error, res) => {
 
 const handleUserCreationError = (error, res) => {
   console.error("Erreur lors de la création de l'utilisateur :", error)
-  console.log(error.code)
   let errorMessage
 
-  switch (error.code) {
+  switch (error) {
+    case 'missing-item':
+      errorMessage = 'Veuillez compléter le(s) champ(s) vide(s).'
+      res.status(422).json({ message: errorMessage })
+      break
     case 'auth/email-already-in-use':
       errorMessage = 'Cette adresse email est déjà utilisée.'
       res.status(400).json({ message: errorMessage })
@@ -45,10 +60,10 @@ const handleUserCreationError = (error, res) => {
 }
 
 const handleEmailVerificationError = (error, res) => {
-  console.log(error.code)
+  console.log(error)
   let errorMessage
 
-  switch (error.code) {
+  switch (error) {
     case 'auth/invalid-email':
       errorMessage = "L'adresse email fournie n'est pas valide."
       res.status(400).json({ message: errorMessage })
@@ -65,10 +80,14 @@ const handleEmailVerificationError = (error, res) => {
 }
 
 const handlePasswordResetError = (error, res) => {
-  console.log(error.code)
+  console.log(error)
   let errorMessage
 
-  switch (error.code) {
+  switch (error) {
+    case 'missing-item':
+      errorMessage = 'Veuillez entrer une adresse mail.'
+      res.status(422).json({ message: errorMessage })
+      break
     case 'auth/user-not-found':
       errorMessage = 'Utilisateur non trouvé.'
       res.status(404).json({ message: errorMessage })
@@ -90,15 +109,19 @@ const handlePasswordResetError = (error, res) => {
 }
 
 const handleLogoutError = (error, res) => {
-  console.log(error.code)
+  console.log(error)
   res.status(500).json({ message: 'Erreur de serveur interne.' })
 }
 
 const handleTokenVerificationError = (error, res) => {
-  console.log(error.code)
+  console.log(error)
   let errorMessage
 
-  switch (error.code) {
+  switch (error) {
+    case 'user-disconnected':
+      errorMessage = "L'utilisateur est déconnecté.";
+      res.status(403).json({ message: errorMessage })
+      break
     case 'auth/argument-error':
       errorMessage = 'Le format du token est invalide.'
       res.status(400).json({ message: errorMessage })
