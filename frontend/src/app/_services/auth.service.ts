@@ -8,7 +8,6 @@ const httpOptions = {
   withCredentials: true,
 };
 
-
 @Injectable({
   providedIn: 'root',
 })
