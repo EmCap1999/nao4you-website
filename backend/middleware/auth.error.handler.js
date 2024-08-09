@@ -138,6 +138,10 @@ const handleTokenVerificationError = (error, res) => {
       errorMessage = 'Le token fourni est invalide.'
       res.status(403).json({ message: errorMessage })
       break
+    case 'error-creation':
+      errorMessage = 'Erreur de création du token personnalisé.'
+      res.status(403).json({ message: errorMessage })
+      break
     default:
       errorMessage = 'Non-autorisé.'
       res.status(403).json({ message: errorMessage })

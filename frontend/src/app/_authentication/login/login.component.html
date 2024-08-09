@@ -19,15 +19,8 @@
               Connectez-vous à votre compte
             </h2>
 
-            <!-- Loading Indicator -->
-            <div *ngIf="isLoading" class="text-center mb-4">
-              <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
-              </div>
-            </div>
-
             <!-- While user is not logged in -->
-            <div *ngIf="!isLoggedIn && !isLoading">
+            <div *ngIf="!isLoggedIn">
               <form
                 name="form"
                 (ngSubmit)="f.form.valid && onSubmit()"
@@ -136,10 +129,7 @@
             </div>
 
             <!-- Log Out -->
-            <div
-              *ngIf="isLoggedIn && !isLoading"
-              class="alert alert-success text-center"
-            >
+            <div *ngIf="isLoggedIn" class="alert alert-success text-center">
               Utilisateur bien connecté.
               <div class="d-grid mt-3">
                 <button (click)="logout()" class="btn btn-custom btn-lg">

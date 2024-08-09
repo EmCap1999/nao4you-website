@@ -12,8 +12,7 @@ const {
   signInWithEmailAndPassword,
   signOut,
   sendEmailVerification,
-  sendPasswordResetEmail,
-  admin
+  sendPasswordResetEmail
 } = require('../config/firebase')
 
 const auth = getAuth()
@@ -39,15 +38,17 @@ class FirebaseAuthController {
         return handleAuthenticationError('email-not-verified', res)
       }
 
-      const customToken = await admin
-        .auth()
-        .createCustomToken(user.uid, { email: user.email })
+      const customToken = await user.getIdToken()
 
-      res.cookie('access-token', customToken, { httpOnly: true, secure: true })
+      res.cookie('access_token', customToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'strict'
+      })
 
-      return res.status(200).send({ message: 'Utilisateur bien connecté.' })
+      return res.status(200).send({ userCredential: user.uid })
     } catch (error) {
-      return handleAuthenticationError(error, res)
+      return handleAuthenticationError(error.code, res)
     }
   }
 
@@ -67,11 +68,11 @@ class FirebaseAuthController {
             message: 'Un email a été envoyé ! Veuillez vérifier votre compte.'
           })
         } catch (error) {
-          handleEmailVerificationError(error, res)
+          handleEmailVerificationError(error.code, res)
         }
       })
       .catch((error) => {
-        handleUserCreationError(error, res)
+        handleUserCreationError(error.code, res)
       })
   }
 
@@ -85,7 +86,7 @@ class FirebaseAuthController {
           .json({ message: "L'utilisateur a bien été déconnecté." })
       })
       .catch((error) => {
-        handleLogoutError(error, res)
+        handleLogoutError(error.code, res)
       })
   }
 
@@ -103,7 +104,7 @@ class FirebaseAuthController {
         })
       })
       .catch((error) => {
-        handlePasswordResetError(error, res)
+        handlePasswordResetError(error.code, res)
       })
   }
 }

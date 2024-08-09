@@ -22,6 +22,7 @@ const {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithCustomToken,
   signOut,
   sendEmailVerification,
   sendPasswordResetEmail
@@ -31,6 +32,7 @@ module.exports = {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  signInWithCustomToken,
   signOut,
   sendEmailVerification,
   sendPasswordResetEmail,

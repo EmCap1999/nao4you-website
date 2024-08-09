@@ -1,4 +1,3 @@
-// middleware/verifyToken.js
 const { admin } = require('../config/firebase')
 const {
   handleTokenVerificationError
@@ -13,8 +12,7 @@ const verifyToken = async (req, res, next) => {
 
   try {
     const decodedToken = await admin.auth().verifyIdToken(idToken)
-    await admin.auth().getUser(decodedToken.uid)
-    req.user = decodedToken
+    req.user = decodedToken.uid
     next()
   } catch (error) {
     handleTokenVerificationError(error.code, res)
