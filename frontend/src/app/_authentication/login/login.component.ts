@@ -5,12 +5,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   form: any = {
     email: null,
-    password: null
+    password: null,
   };
   isLoggedIn: boolean = false;
   isLoginFailed: boolean = false;
@@ -20,41 +20,41 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private cd: ChangeDetectorRef
-  ) { }
+    private cd: ChangeDetectorRef,
+  ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
     this.authService.verifyToken().subscribe({
-      next: (claims) => {
+      next: () => {
         this.isLoggedIn = true;
         this.isLoading = false;
         this.cd.detectChanges();
       },
-      error: err => {
+      error: (err) => {
         this.message = err.error.message;
         this.isLoggedIn = false;
         this.isLoading = false;
         this.cd.detectChanges();
-      }
+      },
     });
   }
 
   onSubmit(): void {
     this.isLoading = true;
     this.authService.login(this.form).subscribe({
-      next: claims => {
+      next: () => {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.isLoading = false;
         this.cd.detectChanges();
       },
-      error: err => {
+      error: (err) => {
         this.message = err.error.message;
         this.isLoginFailed = true;
         this.isLoading = false;
         this.cd.detectChanges();
-      }
+      },
     });
   }
 
@@ -68,16 +68,16 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/login']);
         this.cd.detectChanges();
       },
-      error: err => {
+      error: (err) => {
         this.message = err.error.message;
         this.isLoading = false;
         this.cd.detectChanges();
-      }
+      },
     });
   }
 
   resetForm(): void {
-    this.form.email = '';
-    this.form.password = '';
+    this.form.email = null;
+    this.form.password = null;
   }
 }

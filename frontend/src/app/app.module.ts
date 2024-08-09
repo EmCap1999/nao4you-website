@@ -13,25 +13,22 @@ import { ProfileComponent } from './_authentication/profile/profile.component';
 import { provideHttpClient } from '@angular/common/http';
 import { httpInterceptorProviders } from './_helpers/http.interceptor.service';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
     NgbModule,
     AppRoutingModule,
     FormsModule,
-    NgOptimizedImage
+    NgOptimizedImage,
   ],
   providers: [provideHttpClient(), httpInterceptorProviders],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

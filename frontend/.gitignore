@@ -2,6 +2,8 @@
 
 # Ignore the config file
 config.ts
+.prettierrc
+.prettierignore
 package-lock.json
 package.json
 

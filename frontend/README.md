@@ -1,8 +1,10 @@
-
-
 # Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.5.
+
+## Prettier (Formater) - Husky (git hooks) and lint-staged
+
+https://medium.com/@vikash389kumar/customizing-your-angular-project-with-vs-code-editor-for-auto-code-formatting-23544a5ae20c
 
 ## Development server
 
