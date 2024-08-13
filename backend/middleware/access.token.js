@@ -1,4 +1,3 @@
-// middleware/verifyToken.js
 const { admin } = require('../config/firebase')
 const {
   handleTokenVerificationError
@@ -8,16 +7,15 @@ const verifyToken = async (req, res, next) => {
   const idToken = req.cookies.access_token
 
   if (!idToken) {
-    return res.status(403).json({ message: 'Utilisateur déconnecté.' })
+    return handleTokenVerificationError('user-disconnected', res)
   }
 
   try {
     const decodedToken = await admin.auth().verifyIdToken(idToken)
-    await admin.auth().getUser(decodedToken.uid)
-    req.user = decodedToken
+    req.user = decodedToken.uid
     next()
   } catch (error) {
-    handleTokenVerificationError(error, res)
+    handleTokenVerificationError(error.code, res)
   }
 }
 

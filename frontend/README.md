@@ -1,8 +1,10 @@
-
-
 # Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.5.
+
+## Prettier (Formater) - Husky (git hooks) and lint-staged
+
+https://prettier.io/docs/en/install --- '$npx prettier . --write (format all files) $npx prettier . --check (check format in all files)'
 
 ## Development server
 

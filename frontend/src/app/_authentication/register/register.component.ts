@@ -4,34 +4,32 @@ import { AuthService } from '../../_services/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
   form: any = {
     username: null,
     email: null,
-    password: null
+    password: null,
   };
-  
+
   isSuccessful = false;
   isSignUpFailed = false;
   message = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
   onSubmit(): void {
-
     this.authService.register(this.form).subscribe({
-      next: data => {
+      next: (data) => {
         this.message = data.message;
         this.isSuccessful = true;
         this.isSignUpFailed = false;
       },
-      error: err => {
+      error: (err) => {
         this.message = err.error.message;
         this.isSignUpFailed = true;
-      }
+      },
     });
-
   }
 }

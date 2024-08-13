@@ -5,44 +5,28 @@ import { AUTH_API } from '../../../config';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  withCredentials: true
+  withCredentials: true,
 };
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(form: any): Observable<any> {
-    return this.http.post(
-      AUTH_API + 'login',
-      form,
-      httpOptions
-    );
+    return this.http.post(AUTH_API + 'login', form, httpOptions);
   }
 
   register(form: any): Observable<any> {
-    return this.http.post(
-      AUTH_API + 'register',
-      form,
-      httpOptions
-    );
+    return this.http.post(AUTH_API + 'register', form, httpOptions);
   }
 
   logout(): Observable<any> {
-    return this.http.post(
-      AUTH_API + 'logout',
-      {},
-      httpOptions
-    );
+    return this.http.post(AUTH_API + 'logout', {}, httpOptions);
   }
 
   verifyToken(): Observable<any> {
-    return this.http.get(
-      AUTH_API + 'access',
-      httpOptions
-    );
+    return this.http.get(AUTH_API + 'access', httpOptions);
   }
 }
