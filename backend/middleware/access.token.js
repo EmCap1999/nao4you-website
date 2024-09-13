@@ -12,7 +12,7 @@ const verifyToken = async (req, res, next) => {
 
   try {
     const decodedToken = await admin.auth().verifyIdToken(idToken)
-    req.user = decodedToken.displayName
+    req.user = decodedToken.name
     next()
   } catch (error) {
     handleTokenVerificationError(error.code, res)

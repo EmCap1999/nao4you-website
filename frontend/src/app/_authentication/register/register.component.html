@@ -6,13 +6,7 @@
           <div class="card-body p-3 p-md-4 p-xl-5">
             <div class="text-center mb-3">
               <a href="https://www.facebook.com/profile.php?id=100086769682698">
-                <img
-                  ngSrc="assets/images/nao4you_logo.jpg"
-                  alt="Nao4You"
-                  width="175"
-                  height="175"
-                  priority
-                />
+                <img ngSrc="assets/images/nao4you_logo.jpg" alt="Nao4You" width="175" height="175" priority />
               </a>
             </div>
             <h2 class="fs-6 fw-normal text-center text-secondary mb-4">
@@ -21,33 +15,50 @@
 
             <!-- While user is not registered -->
             <div *ngIf="!isSuccessful">
-              <form
-                name="form"
-                (ngSubmit)="f.form.valid && onSubmit()"
-                #f="ngForm"
-                novalidate
-              >
+              <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
                 <div class="row gy-2 overflow-hidden">
-                  <!-- User's email address -->
+
+                  <!-- First Name -->
                   <div class="col-12">
                     <div class="form-floating mb-3">
-                      <input
-                        type="email"
-                        class="form-control"
-                        name="email"
-                        [(ngModel)]="form.email"
-                        required
-                        #email="ngModel"
-                        placeholder="nom@example.com"
-                        [ngClass]="{
+                      <input type="text" class="form-control" name="firstName" [(ngModel)]="form.firstName" required
+                        #firstName="ngModel" placeholder="Prénom" [ngClass]="{
+                    'is-invalid': f.submitted && firstName.errors
+                  }" />
+                      <label for="firstName" class="form-label">Prénom</label>
+                      <div *ngIf="firstName.errors && f.submitted" class="invalid-feedback">
+                        <div *ngIf="firstName.errors['required']">
+                          Veuillez compléter le champ.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Last Name -->
+                  <div class="col-12">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" name="lastName" [(ngModel)]="form.lastName" required
+                        #lastName="ngModel" placeholder="Nom" [ngClass]="{
+        'is-invalid': f.submitted && lastName.errors
+      }" />
+                      <label for="lastName" class="form-label">Nom</label>
+                      <div *ngIf="lastName.errors && f.submitted" class="invalid-feedback">
+                        <div *ngIf="lastName.errors['required']">
+                          Veuillez compléter le champ.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- email address -->
+                  <div class="col-12">
+                    <div class="form-floating mb-3">
+                      <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required
+                        #email="ngModel" placeholder="nom@example.com" [ngClass]="{
                           'is-invalid': f.submitted && email.errors,
-                        }"
-                      />
+                        }" />
                       <label for="email" class="form-label">Adresse mail</label>
-                      <div
-                        *ngIf="email.errors && f.submitted"
-                        class="invalid-feedback"
-                      >
+                      <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
                         <div *ngIf="email.errors['required']">
                           Veuillez compléter le champ.
                         </div>
@@ -58,29 +69,15 @@
                     </div>
                   </div>
 
-                  <!-- User's password -->
+                  <!-- password -->
                   <div class="col-12">
                     <div class="form-floating mb-3">
-                      <input
-                        type="password"
-                        class="form-control"
-                        name="password"
-                        [(ngModel)]="form.password"
-                        required
-                        minlength="6"
-                        #password="ngModel"
-                        placeholder="Mot de passe"
-                        [ngClass]="{
+                      <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required
+                        minlength="6" #password="ngModel" placeholder="Mot de passe" [ngClass]="{
                           'is-invalid': f.submitted && password.errors,
-                        }"
-                      />
-                      <label for="password" class="form-label"
-                        >Mot de passe</label
-                      >
-                      <div
-                        *ngIf="password.errors && f.submitted"
-                        class="invalid-feedback"
-                      >
+                        }" />
+                      <label for="password" class="form-label">Mot de passe</label>
+                      <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
                         <div *ngIf="password.errors['required']">
                           Veuillez compléter le champ.
                         </div>
@@ -94,22 +91,10 @@
                   <!-- Terms and conditions agreement -->
                   <div class="col-12">
                     <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        name="iAgree"
-                        id="iAgree"
-                        required
-                      />
-                      <label
-                        class="form-check-label text-secondary"
-                        for="iAgree"
-                      >
+                      <input class="form-check-input" type="checkbox" value="" name="iAgree" id="iAgree" required />
+                      <label class="form-check-label text-secondary" for="iAgree">
                         J'accepte les
-                        <a href="#!" class="link-custom"
-                          >termes et conditions</a
-                        >
+                        <a href="#!" class="link-custom">termes et conditions</a>
                       </label>
                     </div>
                   </div>
@@ -131,13 +116,9 @@
                     </p>
                   </div>
 
-                  <!-- Errors management -->
+                  <!-- Errors handling -->
                   <div class="col-12">
-                    <div
-                      *ngIf="f.submitted && isSignUpFailed"
-                      class="alert alert-danger"
-                      role="alert"
-                    >
+                    <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-danger" role="alert">
                       {{ message }}
                     </div>
                   </div>

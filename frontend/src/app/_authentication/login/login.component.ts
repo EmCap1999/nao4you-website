@@ -13,14 +13,15 @@ export class LoginComponent implements OnInit {
   };
   isLoggedIn: boolean = false;
   isLoginFailed: boolean = false;
+  user: string = '';
   message: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.authService.verifyToken().subscribe({
-      next: (response) => {
-        console.log(response);
+      next: (res) => {
+        this.user = res.userInfo;
         this.isLoggedIn = true;
       },
       error: (err) => {
@@ -32,8 +33,8 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     this.authService.login(this.form).subscribe({
-      next: (response) => {
-        console.log(response);
+      next: (res) => {
+        this.user = res.userInfo;
         this.isLoginFailed = false;
         this.isLoggedIn = true;
       },

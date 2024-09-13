@@ -18,6 +18,6 @@ module.exports = function (app) {
   app.post('/api/logout', firebaseAuthController.logoutUser)
   app.post('/api/reset-password', firebaseAuthController.resetPassword)
   app.get('/api/access', verifyToken, (req, res) => {
-    res.status(200).json({ userINfo: req.user })
+    res.status(200).json({ userInfo: req.user })
   })
 }
