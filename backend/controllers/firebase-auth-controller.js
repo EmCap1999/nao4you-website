@@ -12,7 +12,8 @@ const {
   signInWithEmailAndPassword,
   signOut,
   sendEmailVerification,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
+  updateProfile,
 } = require('../config/firebase')
 
 const auth = getAuth()
@@ -32,7 +33,7 @@ class FirebaseAuthController {
         password
       )
 
-      const user = userCredential.user
+      const user = userCredential.user;
 
       if (!user.emailVerified) {
         return handleAuthenticationError('email-not-verified', res)
@@ -46,7 +47,7 @@ class FirebaseAuthController {
         sameSite: 'strict'
       })
 
-      return res.status(200).send({ userCredential: user.uid })
+      return res.status(200).send({ userInfo: user.displayName })
     } catch (error) {
       return handleAuthenticationError(error.code, res)
     }
@@ -54,7 +55,11 @@ class FirebaseAuthController {
 
   // sign up
   registerUser(req, res) {
-    const { email, password } = req.body
+    const { 
+      email, 
+      password, 
+      firstName, 
+      lastName } = req.body
 
     if (!email || !password) {
       return handleUserCreationError('missing-item', res)
@@ -63,7 +68,13 @@ class FirebaseAuthController {
     createUserWithEmailAndPassword(auth, email, password)
       .then(async () => {
         try {
+
           await sendEmailVerification(auth.currentUser)
+
+          await updateProfile(auth.currentUser, {
+            displayName: `${firstName} ${lastName}`
+          })
+
           res.status(201).json({
             message: 'Un email a été envoyé ! Veuillez vérifier votre compte.'
           })
