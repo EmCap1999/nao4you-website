@@ -21,10 +21,13 @@
                   <!-- First Name -->
                   <div class="col-12">
                     <div class="form-floating mb-3">
-                      <input type="text" class="form-control" name="firstName" [(ngModel)]="form.firstName" required
-                        #firstName="ngModel" placeholder="Prénom" [ngClass]="{
-                    'is-invalid': f.submitted && firstName.errors
-                  }" />
+                      <input type="text" 
+                             class="form-control" 
+                             name="firstName" 
+                             id="firstName"
+                             [(ngModel)]="form.firstName" required 
+                             #firstName="ngModel" 
+                             [ngClass]="{'is-invalid': f.submitted && firstName.errors}" />
                       <label for="firstName" class="form-label">Prénom</label>
                       <div *ngIf="firstName.errors && f.submitted" class="invalid-feedback">
                         <div *ngIf="firstName.errors['required']">
@@ -34,13 +37,18 @@
                     </div>
                   </div>
 
+
                   <!-- Last Name -->
                   <div class="col-12">
                     <div class="form-floating mb-3">
-                      <input type="text" class="form-control" name="lastName" [(ngModel)]="form.lastName" required
-                        #lastName="ngModel" placeholder="Nom" [ngClass]="{
-        'is-invalid': f.submitted && lastName.errors
-      }" />
+                      <input type="text" 
+                            class="form-control" 
+                            name="lastName" 
+                            id="lastName"
+                            [(ngModel)]="form.lastName" 
+                            required
+                            #lastName="ngModel" 
+                            [ngClass]="{'is-invalid': f.submitted && lastName.errors}" />
                       <label for="lastName" class="form-label">Nom</label>
                       <div *ngIf="lastName.errors && f.submitted" class="invalid-feedback">
                         <div *ngIf="lastName.errors['required']">
@@ -50,13 +58,18 @@
                     </div>
                   </div>
 
-                  <!-- email address -->
+
+                  <!-- Email Address -->
                   <div class="col-12">
                     <div class="form-floating mb-3">
-                      <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required
-                        #email="ngModel" placeholder="nom@example.com" [ngClass]="{
-                          'is-invalid': f.submitted && email.errors,
-                        }" />
+                      <input type="email" 
+                             class="form-control" 
+                             name="email" 
+                             id="email"
+                             [(ngModel)]="form.email" required
+                             #email="ngModel" 
+                             autocomplete="email"
+                             [ngClass]="{'is-invalid': f.submitted && email.errors}" />
                       <label for="email" class="form-label">Adresse mail</label>
                       <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
                         <div *ngIf="email.errors['required']">
@@ -69,13 +82,18 @@
                     </div>
                   </div>
 
-                  <!-- password -->
+
+                <!-- Password -->
                   <div class="col-12">
                     <div class="form-floating mb-3">
-                      <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required
-                        minlength="6" #password="ngModel" placeholder="Mot de passe" [ngClass]="{
-                          'is-invalid': f.submitted && password.errors,
-                        }" />
+                      <input type="password" 
+                             class="form-control" 
+                             name="password" 
+                             id="password"
+                             [(ngModel)]="form.password" required
+                             minlength="6" 
+                             #password="ngModel"  
+                             [ngClass]="{'is-invalid': f.submitted && password.errors}" />
                       <label for="password" class="form-label">Mot de passe</label>
                       <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
                         <div *ngIf="password.errors['required']">
@@ -87,6 +105,7 @@
                       </div>
                     </div>
                   </div>
+
 
                   <!-- Terms and conditions agreement -->
                   <div class="col-12">

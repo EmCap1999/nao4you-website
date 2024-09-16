@@ -20,10 +20,15 @@
                   <!-- email address -->
                   <div class="col-12">
                     <div class="form-floating mb-3">
-                      <input type="email" class="form-control" id="email" name="email" [(ngModel)]="form.email" required
-                        #email="ngModel" placeholder="name@example.com" autocomplete="email" [ngClass]="{
-                          'is-invalid': f.submitted && email.errors,
-                        }" />
+                      <input type="email" 
+                             class="form-control" 
+                             id="email" 
+                             name="email" 
+                             [(ngModel)]="form.email" required
+                             #email="ngModel" 
+                             autocomplete="email" 
+                             [ngClass]="{'is-invalid': f.submitted && email.errors,
+}" />
                       <label for="email" class="form-label">Adresse mail</label>
                       <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
                         Veuillez compléter le champ.
@@ -37,11 +42,14 @@
                   <!-- password -->
                   <div class="col-12">
                     <div class="form-floating mb-3">
-                      <input type="password" class="form-control" id="password" name="password"
-                        [(ngModel)]="form.password" required minlength="6" #password="ngModel"
-                        placeholder="Mot de passe" [ngClass]="{
-                          'is-invalid': f.submitted && password.errors,
-                        }" />
+                      <input type="password" 
+                             class="form-control" 
+                             id="password" 
+                             name="password"
+                             [(ngModel)]="form.password" required 
+                             minlength="6" 
+                             #password="ngModel"
+                             [ngClass]="{'is-invalid': f.submitted && password.errors}" />
                       <label for="password" class="form-label">Mot de passe</label>
                       <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
                         <div *ngIf="password.errors['required']">
