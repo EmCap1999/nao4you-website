@@ -46,16 +46,12 @@ export class LoginComponent implements OnInit {
     this.authService.logout().subscribe({
       next: () => {
         this.isLoggedIn = false;
-        this.resetForm();
+        this.form = {}
       },
       error: (err) => {
         this.message = err.error.message;
       },
     });
   }
-
-  resetForm(): void {
-    this.form.email = null;
-    this.form.password = null;
-  }
+  
 }

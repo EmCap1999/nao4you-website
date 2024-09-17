@@ -1,10 +1,11 @@
 const {
   handleUserCreationError,
-  handleEmailVerificationError,
   handleAuthenticationError,
   handlePasswordResetError,
   handleLogoutError
 } = require('../middleware/auth.error.handler')
+
+const { handleSetUserError } = require('../middleware/firestore.error.handler')
 
 const {
   getAuth,
@@ -13,12 +14,15 @@ const {
   signOut,
   sendEmailVerification,
   sendPasswordResetEmail,
-  updateProfile,
+  updateProfile
 } = require('../config/firebase')
+
+const { setUser } = require('../controllers/firestore-user-controller')
 
 const auth = getAuth()
 
 class FirebaseAuthController {
+  //sign in
   loginUser = async (req, res) => {
     const { email, password } = req.body
 
@@ -33,7 +37,7 @@ class FirebaseAuthController {
         password
       )
 
-      const user = userCredential.user;
+      const user = userCredential.user
 
       if (!user.emailVerified) {
         return handleAuthenticationError('email-not-verified', res)
@@ -54,37 +58,40 @@ class FirebaseAuthController {
   }
 
   // sign up
-  registerUser(req, res) {
-    const { 
-      email, 
-      password, 
-      firstName, 
-      lastName } = req.body
+  async registerUser(req, res) {
+    const { email, password, firstName, lastName } = req.body
 
-    if (!email || !password) {
+    if (!email || !password || !firstName || !lastName) {
       return handleUserCreationError('missing-item', res)
     }
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(async () => {
-        try {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      )
+      const user = userCredential.user
 
-          await sendEmailVerification(auth.currentUser)
+      await sendEmailVerification(user)
 
-          await updateProfile(auth.currentUser, {
-            displayName: `${firstName} ${lastName}`
-          })
-
-          res.status(201).json({
-            message: 'Un email a été envoyé ! Veuillez vérifier votre compte.'
-          })
-        } catch (error) {
-          handleEmailVerificationError(error.code, res)
-        }
+      await updateProfile(user, {
+        displayName: `${firstName} ${lastName}`
       })
-      .catch((error) => {
+
+      await setUser(user.uid, req.body)
+
+      res.status(201).json({
+        message:
+          'Un email de vérification a été envoyé ! Veuillez vérifier votre compte.'
+      })
+    } catch (error) {
+      if (error.code.startsWith('firestore')) {
+        handleSetUserError(error.code, res)
+      } else {
         handleUserCreationError(error.code, res)
-      })
+      }
+    }
   }
 
   // sign out

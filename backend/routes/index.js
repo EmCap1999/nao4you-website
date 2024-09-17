@@ -13,11 +13,11 @@ module.exports = function (app) {
     next()
   })
 
-  app.post('/api/register', firebaseAuthController.registerUser)
-  app.post('/api/login', firebaseAuthController.loginUser)
-  app.post('/api/logout', firebaseAuthController.logoutUser)
-  app.post('/api/reset-password', firebaseAuthController.resetPassword)
   app.get('/api/access', verifyToken, (req, res) => {
     res.status(200).json({ userInfo: req.user })
   })
+  app.post('/api/login', firebaseAuthController.loginUser)
+  app.post('/api/logout', firebaseAuthController.logoutUser)
+  app.post('/api/reset-password', firebaseAuthController.resetPassword)
+  app.post('/api/register', firebaseAuthController.registerUser)
 }
