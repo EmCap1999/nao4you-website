@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgOptimizedImage } from '@angular/common';
 
@@ -12,6 +12,9 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './_authentication/profile/profile.component';
 import { provideHttpClient } from '@angular/common/http';
 import { httpInterceptorProviders } from './_helpers/http.interceptor.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input-gg'
+
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { httpInterceptorProviders } from './_helpers/http.interceptor.service';
     NgbModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     NgOptimizedImage,
+    BrowserAnimationsModule,
+    NgxIntlTelInputModule
   ],
   providers: [provideHttpClient(), httpInterceptorProviders],
   bootstrap: [AppComponent],

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../_services/auth.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input-gg';
 
 @Component({
   selector: 'app-register',
@@ -8,18 +10,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  form: any = {};
-  isSuccessful = false;
-  isSignUpFailed = false;
-  message = '';
+  form: FormGroup;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  // phone params instances
+  CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+  countriesList: CountryISO[] = [
+    CountryISO.Belgium,
+    CountryISO.France
+  ];
+
+  // other
+  isSuccessful: Boolean = false;
+  isSignUpFailed: Boolean = false;
+  message: String = '';
+
+  constructor(private authService: AuthService, private router: Router) {
+    this.form = new FormGroup({
+      firstName: new FormControl(undefined, Validators.required),
+      lastName: new FormControl(undefined, Validators.required),
+      email: new FormControl(undefined, [Validators.required, Validators.email]),
+      password: new FormControl(undefined, [Validators.required, Validators.minLength(6)]),
+      phone: new FormControl(undefined, [Validators.required]),
+    });
+  }
+
 
   onSubmit(): void {
-    this.authService.register(this.form).subscribe({
+    this.authService.register(this.form.value).subscribe({
       next: (data) => {
         this.message = data.message;
         this.isSuccessful = true;
@@ -35,3 +53,4 @@ export class RegisterComponent {
     });
   }
 }
+
