@@ -14,7 +14,8 @@ const {
   signOut,
   sendEmailVerification,
   sendPasswordResetEmail,
-  updateProfile
+  updateProfile,
+  admin
 } = require('../config/firebase')
 
 const { setUser } = require('../controllers/firestore-user-controller')
@@ -24,17 +25,17 @@ const auth = getAuth()
 class FirebaseAuthController {
   //sign in
   loginUser = async (req, res) => {
-    const { email, password } = req.body
+    for (const [key, value] of Object.entries(req.body)) {
+      if (!value) {
+        return handleUserCreationError('missing-item', res);
+      }
+    }
 
     try {
-      if (!email || !password) {
-        return handleAuthenticationError('missing-item', res)
-      }
-
       const userCredential = await signInWithEmailAndPassword(
         auth,
-        email,
-        password
+        req.body.email,
+        req.body.password
       )
 
       const user = userCredential.user
@@ -59,24 +60,24 @@ class FirebaseAuthController {
 
   // sign up
   async registerUser(req, res) {
-    const { email, password, firstName, lastName } = req.body
-
-    if (!email || !password || !firstName || !lastName) {
-      return handleUserCreationError('missing-item', res)
+    for (const [key, value] of Object.entries(req.body)) {
+      if (!value) {
+        return handleUserCreationError('missing-item', res);
+      }
     }
 
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
-        email,
-        password
+        req.body.email,
+        req.body.password
       )
       const user = userCredential.user
 
       await sendEmailVerification(user)
 
       await updateProfile(user, {
-        displayName: `${firstName} ${lastName}`
+        displayName: `${req.body.firstName} ${req.body.lastName}`
       })
 
       await setUser(user.uid, req.body)
@@ -109,21 +110,25 @@ class FirebaseAuthController {
   }
 
   // reset password
-  resetPassword(req, res) {
-    const { email } = req.body
+  async resetPassword(req, res) {
+    const { email } = req.body;
+
     if (!email) {
-      return handlePasswordResetError('missing-item', res)
+      return handlePasswordResetError('missing-item', res);
     }
-    sendPasswordResetEmail(auth, email)
-      .then(() => {
-        res.status(200).json({
-          message:
-            'Un email a bien été envoyé ! Vous pouvez changer de mot de passe.'
-        })
-      })
-      .catch((error) => {
-        handlePasswordResetError(error.code, res)
-      })
+
+    try {
+      await admin.auth().getUserByEmail(email);
+
+      await sendPasswordResetEmail(auth, email);
+
+      res.status(200).json({
+        message: 'Un email a bien été envoyé ! Vous pouvez changer de mot de passe.'
+      });
+    } catch (error) {
+      console.log(error);
+      handlePasswordResetError(error.code, res)
+    }
   }
 }
 
