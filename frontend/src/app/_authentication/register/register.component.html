@@ -6,7 +6,7 @@
           <div class="card-body p-3 p-md-4 p-xl-5">
             <div class="text-center mb-3">
               <a href="https://www.facebook.com/profile.php?id=100086769682698">
-                <img ngSrc="assets/images/nao4you_logo.jpg" alt="Nao4You" width="175" height="175" priority />
+                <img ngSrc="assets/images/nao4you_logo.png" alt="Nao4You" width="175" height="175" priority/>
               </a>
             </div>
             <h2 class="fs-6 fw-normal text-center text-secondary mb-4">
@@ -27,12 +27,12 @@
                              name="firstName" 
                              id="firstName"
                              [ngClass]="{'is-invalid': f.submitted && form.get('firstName')?.invalid}" />
-                      <label for="firstName" class="form-label">Prénom</label>
+                      <label for="firstName" class="form-label">Prénom 
+                        <span class="text-danger">*</span>
+                      </label>
                       <!-- handling errors -->
                       <div *ngIf="form.get('firstName')?.errors && f.submitted" class="invalid-feedback">
-                        <div *ngIf="form.get('firstName')?.errors?.['required']">
-                          Veuillez compléter le champ.
-                        </div>
+                        <div *ngIf="form.get('firstName')?.errors?.['required']"></div>
                       </div>
                     </div>
                   </div>
@@ -46,12 +46,12 @@
                              name="lastName" 
                              id="lastName"
                              [ngClass]="{'is-invalid': f.submitted && form.get('lastName')?.invalid}"/>
-                      <label for="lastName" class="form-label">Nom</label>
+                      <label for="lastName" class="form-label">Nom 
+                        <span class="text-danger">*</span>
+                      </label>
                      <!-- handling errors -->
                      <div *ngIf="form.get('lastName')?.errors && f.submitted" class="invalid-feedback">
-                      <div *ngIf="form.get('lastName')?.errors?.['required']">
-                        Veuillez compléter le champ.
-                      </div>
+                      <div *ngIf="form.get('lastName')?.errors?.['required']"></div>
                     </div>
                   </div>
                 </div>
@@ -65,12 +65,12 @@
                              id="email" 
                              autocomplete="email"
                              [ngClass]="{'is-invalid': f.submitted && form.get('email')?.invalid}" />
-                      <label for="email" class="form-label">Adresse mail</label>
+                      <label for="email" class="form-label">Adresse mail 
+                        <span class="text-danger">*</span>
+                      </label>
                       <!-- handling errors -->
                       <div *ngIf="form.get('email')?.errors && f.submitted" class="invalid-feedback">
-                        <div *ngIf="form.get('email')?.errors?.['required']">
-                          Veuillez compléter le champ.
-                        </div>
+                        <div *ngIf="form.get('email')?.errors?.['required']"></div>
                         <div *ngIf="form.get('email')?.errors?.['email']">
                           L'email n'est pas valide.
                         </div>
@@ -86,12 +86,12 @@
                              formControlName="password" 
                              id="password"
                              [ngClass]="{'is-invalid': f.submitted && form.get('password')?.invalid }" />
-                      <label for="password" class="form-label">Mot de passe</label>
+                      <label for="password" class="form-label">Mot de passe 
+                        <span class="text-danger">*</span>
+                      </label>
                       <!-- handling errors -->
                       <div *ngIf="form.get('password')?.errors && f.submitted" class="invalid-feedback">
-                        <div *ngIf="form.get('password')?.errors?.['required']">
-                          Veuillez compléter le champ.
-                        </div>
+                        <div *ngIf="form.get('password')?.errors?.['required']"></div>
                         <div *ngIf="form.get('password')?.errors?.['minlength']">
                           Minimum 6 caractères.
                         </div>
@@ -116,11 +116,11 @@
                             class="form-control"
                             [ngClass]="{'is-invalid': f.submitted && form.get('phone')?.invalid}"/>
                       <!-- handling errors -->
-                      <label for="phone" class="form-label">Numéro de téléphone</label>
+                      <label for="phone" class="form-label">Numéro de téléphone 
+                        <span class="text-danger">*</span>
+                      </label>
                       <div *ngIf="form.get('phone')?.errors && f.submitted" class="invalid-feedback">
-                        <div *ngIf="form.get('phone')?.errors?.['required']">
-                          Veuillez compléter le champ.
-                        </div>
+                        <div *ngIf="form.get('phone')?.errors?.['required']"></div>
                       </div>
                     </div>
                   </div>
@@ -148,6 +148,14 @@
                         S'inscrire
                       </button>
                     </div>
+                  </div>
+
+                  <!-- Sign up -->
+                  <div class="col-12">
+                    <p class="m-0 text-secondary text-center">
+                      Déjà inscrit(e) ?
+                      <a href="login" class="link-custom">Connectez-vous</a>
+                    </p>
                   </div>
 
                   <!-- Errors Handling -->
