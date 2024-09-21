@@ -103,18 +103,20 @@
                   <!-- Phone Number -->
                   <div class="col-12">
                     <div class="form-floating mb-3">
-                      <ngx-intl-tel-input [onlyCountries]="countriesList" 
-                                          [enableAutoCountrySelect]="true"
-                                          [enablePlaceholder]="true" 
-                                          [selectFirstCountry]="true" 
-                                          [phoneValidation]="true"
-                                          [separateDialCode]="true" 
-                                          [numberFormat]="PhoneNumberFormat.National" 
-                                          name="phone"
-                                          formControlName="phone" 
-                                          [ngClass]="{'is-invalid': f.submitted && form.get('phone')?.invalid}">
-                      </ngx-intl-tel-input>
+                      <ngx-intl-tel-input
+                            [onlyCountries]="countriesList" 
+                            [enableAutoCountrySelect]="true"
+                            [enablePlaceholder]="true" 
+                            [selectFirstCountry]="true" 
+                            [phoneValidation]="true"
+                            [separateDialCode]="true" 
+                            [numberFormat]="PhoneNumberFormat.National" 
+                            name="phone"
+                            formControlName="phone" 
+                            class="form-control"
+                            [ngClass]="{'is-invalid': f.submitted && form.get('phone')?.invalid}"/>
                       <!-- handling errors -->
+                      <label for="phone" class="form-label">Numéro de téléphone</label>
                       <div *ngIf="form.get('phone')?.errors && f.submitted" class="invalid-feedback">
                         <div *ngIf="form.get('phone')?.errors?.['required']">
                           Veuillez compléter le champ.
@@ -123,8 +125,7 @@
                     </div>
                   </div>
 
-
-
+            
                   <!-- Terms and Conditions -->
                   <div class="col-12">
                     <div class="form-check">

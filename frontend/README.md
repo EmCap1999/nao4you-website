@@ -1,5 +1,12 @@
 # Frontend
 
+### Diasable lightgrey border from phone input:
+- got to --> ./node_modules/intl-tel-input/build.css/intlTelInput.css
+- add -->  .iti input, .iti input[type=text], .iti input[type=tel] {
+    ...
+    border: none !important;
+    box-shadow: none !important; }
+
 ![alt text](sign_up_state.png)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.5.
