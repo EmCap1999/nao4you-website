@@ -32,10 +32,10 @@
                       </label>
                       <!-- handling errors -->
                       <div *ngIf="form.get('firstName')?.errors && f.submitted" class="invalid-feedback">
-                        <div *ngIf="form.get('firstName')?.errors?.['required']"></div>
+                          <div *ngIf="form.get('firstName')?.errors?.['required']"></div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
                   <!-- Last Name -->
                   <div class="col-12">
@@ -120,7 +120,13 @@
                         <span class="text-danger">*</span>
                       </label>
                       <div *ngIf="form.get('phone')?.errors && f.submitted" class="invalid-feedback">
+
                         <div *ngIf="form.get('phone')?.errors?.['required']"></div>
+
+                        <div *ngIf="form.get('phone')?.errors?.['validatePhoneNumber']">
+                          Numéro de téléphone invalide.
+                        </div>
+
                       </div>
                     </div>
                   </div>
