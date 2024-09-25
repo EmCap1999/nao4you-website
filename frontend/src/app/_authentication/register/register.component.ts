@@ -25,8 +25,9 @@ export class RegisterComponent {
 
   constructor(private authService: AuthService, private router: Router) {
     this.form = new FormGroup({
-      firstName: new FormControl(undefined, Validators.required),
-      lastName: new FormControl(undefined, Validators.required),
+      firstName: new FormControl(undefined, [Validators.required]),
+      lastName: new FormControl(undefined, [Validators.required]),
+      gender: new FormControl(undefined, [Validators.required]),
       email: new FormControl(undefined, [Validators.required, Validators.email]),
       password: new FormControl(undefined, [Validators.required, Validators.minLength(6)]),
       phone: new FormControl(undefined, [Validators.required, phoneNumberValidator()]),
