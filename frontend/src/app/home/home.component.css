@@ -1,0 +1,16 @@
+.btn-custom {
+    color: white;
+    background-color: rgba(173, 132, 168, 255);
+    border-color: rgba(173, 132, 168, 255);
+}
+
+.btn-custom:hover {
+    background-color: rgba(173, 132, 168, 0.8);
+    border-color: rgba(173, 132, 168, 0.8);
+    color: white;
+}
+
+.alert-success {
+    background-color: rgba(174, 132, 170, 0.1);
+    border-color: rgba(174, 132, 170, 0.2);
+}

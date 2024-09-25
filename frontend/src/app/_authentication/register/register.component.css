@@ -1,14 +1,9 @@
-.link-custom,
-.btn-custom {
-  color: rgba(185, 136, 174, 255);
-}
-
 .link-custom {
+  color: rgba(185, 136, 174, 255);
   text-decoration: none;
 }
 
-.link-custom:hover,
-.btn-custom:hover {
+.link-custom:hover {
   color: rgba(185, 136, 174, 255);
 }
 

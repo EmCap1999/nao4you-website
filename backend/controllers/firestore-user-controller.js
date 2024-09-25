@@ -14,6 +14,20 @@ async function setUser(uid, userData) {
   }
 }
 
+async function getUser(uid) {
+  try {
+    const userDoc = await firestore.collection('users').doc(uid).get()
+
+    if (!userDoc.exists) {
+      throw new Error('Utilisateur non trouvé')
+    }
+    return userDoc.data()
+  } catch (error) {
+    throw new Error(`firestore/${error.code}`)
+  }
+}
+
 module.exports = {
-  setUser
+  setUser,
+  getUser
 }

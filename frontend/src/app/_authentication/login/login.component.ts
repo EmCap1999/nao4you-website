@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../_services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +14,16 @@ export class LoginComponent implements OnInit {
   user: string = '';
   message: string = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.authService.verifyToken().subscribe({
-      next: (res) => {
-        this.user = res.userInfo;
+      next: () => {
         this.isLoggedIn = true;
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         this.message = err.error.message;
@@ -30,10 +34,10 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     this.authService.login(this.form).subscribe({
-      next: (res) => {
-        this.user = res.userInfo;
+      next: () => {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         this.message = err.error.message;
@@ -41,17 +45,4 @@ export class LoginComponent implements OnInit {
       },
     });
   }
-
-  logout(): void {
-    this.authService.logout().subscribe({
-      next: () => {
-        this.isLoggedIn = false;
-        this.form = {}
-      },
-      error: (err) => {
-        this.message = err.error.message;
-      },
-    });
-  }
-  
 }

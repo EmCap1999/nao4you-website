@@ -25,9 +25,9 @@ const auth = getAuth()
 class FirebaseAuthController {
   //sign in
   loginUser = async (req, res) => {
-    for (const [key, value] of Object.entries(req.body)) {
+    for (const [, value] of Object.entries(req.body)) {
       if (!value) {
-        return handleUserCreationError('missing-item', res);
+        return handleUserCreationError('missing-item', res)
       }
     }
 
@@ -52,7 +52,9 @@ class FirebaseAuthController {
         sameSite: 'strict'
       })
 
-      return res.status(200).send({ userInfo: user.displayName })
+      return res.status(200).json({
+        message: 'utilisateur bien connecté.'
+      })
     } catch (error) {
       return handleAuthenticationError(error.code, res)
     }
@@ -60,9 +62,9 @@ class FirebaseAuthController {
 
   // sign up
   async registerUser(req, res) {
-    for (const [key, value] of Object.entries(req.body)) {
+    for (const [, value] of Object.entries(req.body)) {
       if (!value) {
-        return handleUserCreationError('missing-item', res);
+        return handleUserCreationError('missing-item', res)
       }
     }
 
@@ -111,22 +113,23 @@ class FirebaseAuthController {
 
   // reset password
   async resetPassword(req, res) {
-    const { email } = req.body;
+    const { email } = req.body
 
     if (!email) {
-      return handlePasswordResetError('missing-item', res);
+      return handlePasswordResetError('missing-item', res)
     }
 
     try {
-      await admin.auth().getUserByEmail(email);
+      await admin.auth().getUserByEmail(email)
 
-      await sendPasswordResetEmail(auth, email);
+      await sendPasswordResetEmail(auth, email)
 
       res.status(200).json({
-        message: 'Un email a bien été envoyé ! Vous pouvez changer de mot de passe.'
-      });
+        message:
+          'Un email a bien été envoyé ! Vous pouvez changer de mot de passe.'
+      })
     } catch (error) {
-      console.log(error);
+      console.log(error)
       handlePasswordResetError(error.code, res)
     }
   }
