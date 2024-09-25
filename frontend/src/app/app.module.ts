@@ -13,7 +13,8 @@ import { ProfileComponent } from './_authentication/profile/profile.component';
 import { provideHttpClient } from '@angular/common/http';
 import { httpInterceptorProviders } from './_helpers/http.interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxIntlTelInputModule } from 'ngx-intl-tel-input-gg'
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input-gg';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input-gg'
     BrowserAnimationsModule,
     NgxIntlTelInputModule
   ],
-  providers: [provideHttpClient(), httpInterceptorProviders],
+  providers: [provideHttpClient(), httpInterceptorProviders, provideAnimationsAsync()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

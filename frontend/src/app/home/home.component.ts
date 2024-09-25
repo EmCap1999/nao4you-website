@@ -8,14 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  user: any;
   isLoggedIn: boolean = false;
   message: string = '';
-
-  //user infos list
-  userKeys(): string[] {
-    return Object.keys(this.user).filter(key => key !== 'phone');
-  }
 
   constructor(
     private authService: AuthService,
@@ -24,8 +18,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.verifyToken().subscribe({
-      next: (res) => {
-        this.user = res.userInfo;
+      next: () => {
         this.isLoggedIn = true;
       },
       error: (err) => {
@@ -36,6 +29,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // sign out
   logout(): void {
     this.authService.logout().subscribe({
       next: () => {

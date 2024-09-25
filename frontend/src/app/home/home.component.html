@@ -1,18 +1,29 @@
-<div *ngIf="isLoggedIn" class="alert alert-success text-center">
-  <h4 class="mb-3">Nao4You te souhaite la bienvenue.</h4>
-
-  <ul class="list-group">
-    <li *ngFor="let info of userKeys()" class="list-group-item">
-      <strong>{{ info }}:</strong> {{ user[info] }}
-    </li>
-    <li class="list-group-item">
-      <strong>Téléphone ({{ user.phone.countryCode }}):</strong> {{ user.phone.internationalNumber }}
-    </li>
-  </ul>
-
-  <div class="d-grid mt-3">
-    <button (click)="logout()" class="btn btn-custom btn-lg">
-      Se déconnecter
-    </button>
-  </div>
-</div>
+<nav class="navbar navbar-expand-lg fixed-top bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href = home>
+            <img ngSrc="assets/images/nao4you_logo.png" 
+            alt="Nao4You" 
+            width="80" 
+            height="80"
+            priority
+            class="d-inline-block align-text-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-bg-primary" href="home">Bougies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-bg-primary" href="home">Produits d'ambiance</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-bg-primary" href="home">Vêtements</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
