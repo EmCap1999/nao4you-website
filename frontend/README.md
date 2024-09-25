@@ -8,6 +8,8 @@
     box-shadow: none !important; }
 
 ![alt text](sign_up_state.png)
+![alt text](sign_in_state.png)
+![alt text](navbar_state.png)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.5.
 
