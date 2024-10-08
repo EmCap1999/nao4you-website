@@ -7,8 +7,8 @@
     border: none !important;
     box-shadow: none !important; }
 
-![alt text](sign_up_state.png)
-![alt text](navbar_state.png)
+![alt text](public/assets/app_state/sign_up_state.png)
+![alt text](public/assets/app_state/navbar_state.png)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.5.
 

@@ -10,7 +10,7 @@
               </a>
             </div>
             <h2 class="fs-6 fw-normal text-center text-secondary mb-4">
-              Entrez vos coordonnées pour vous inscrire
+              Inscription - Coordonnées contact
             </h2>
 
             <!-- While user is not registered -->
@@ -63,18 +63,15 @@
                             formControlName="gender"
                             id="gender"
                             [ngClass]="{'is-invalid': f.submitted && form.get('gender')?.invalid }">
-                      <option value="" disabled selected>Obligatoire</option>
-                      <option value="male">Homme</option>
-                      <option value="female">Femme</option>
+                      <option value="Homme">homme</option>
+                      <option value="Femme">femme</option>
                     </select>
                     <label for="gender" class="form-label">Genre 
                       <span class="text-danger">*</span>
                     </label>
                     <!-- handling errors -->
                     <div *ngIf="form.get('gender')?.errors && f.submitted" class="invalid-feedback">
-                      <div *ngIf="form.get('gender')?.errors?.['required']">
-                        Ce champ est requis.
-                      </div>
+                      <div *ngIf="form.get('gender')?.errors?.['required']"></div>
                     </div>
                   </div>
                 </div>
@@ -126,11 +123,11 @@
 
                   <!-- Phone Number -->
                   <div class="col-12">
-                    <div class="form-floating mb-3">
+                    <div class="form-floating mb-4">
                       <ngx-intl-tel-input
                             [onlyCountries]="countriesList" 
                             [enableAutoCountrySelect]="true"
-                            [enablePlaceholder]="true" 
+                            [enablePlaceholder]="false" 
                             [selectFirstCountry]="true" 
                             [phoneValidation]="true"
                             [separateDialCode]="true" 
@@ -151,6 +148,34 @@
                           Numéro de téléphone invalide.
                         </div>
 
+                      </div>
+                    </div>
+                  </div>
+
+                  <h2 class="fs-6 fw-normal text-center text-secondary">
+                    Inscription - Adresse postale
+                  </h2>
+
+                  <!-- Address -->
+
+                  <!-- Country -->
+                  <div class="col-12">
+                    <div formGroupName="address" class="form-floating mb-3">
+                      <select class="form-control"
+                              formControlName="country"
+                              name="country"
+                              id="country"
+                              autocomplete="country"
+                              [ngClass]="{'is-invalid': f.submitted && form.get('address.country')?.invalid }">
+                        <option value="Belgique">Belgique</option>
+                        <option value="France">France</option>
+                      </select>
+                      <label for="country" class="form-label">Pays 
+                        <span class="text-danger">*</span>
+                      </label>
+                      <!-- handling errors -->
+                      <div *ngIf="form.get('address.country')?.errors && f.submitted" class="invalid-feedback">
+                        <div *ngIf="form.get('address.country')?.errors?.['required']"></div>
                       </div>
                     </div>
                   </div>

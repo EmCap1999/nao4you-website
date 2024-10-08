@@ -31,6 +31,13 @@ export class RegisterComponent {
       email: new FormControl(undefined, [Validators.required, Validators.email]),
       password: new FormControl(undefined, [Validators.required, Validators.minLength(6)]),
       phone: new FormControl(undefined, [Validators.required, phoneNumberValidator()]),
+      address: new FormGroup({
+        // street: new FormControl(undefined),
+        country: new FormControl(undefined, [Validators.required]),
+        // province: new FormControl(undefined),
+        // city: new FormControl(undefined, [Validators.required]),
+        // postalCode: new FormControl(undefined, [Validators.required]),
+      })
     });
   }
 
