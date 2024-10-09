@@ -1,234 +1,238 @@
-<section class="py-3 py-md-5">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
-        <div class="card border border-light-subtle rounded-3 shadow-sm">
-          <div class="card-body p-3 p-md-4 p-xl-5">
-            <div class="text-center mb-3">
-              <a href="https://www.facebook.com/profile.php?id=100086769682698">
-                <img ngSrc="assets/images/nao4you_logo.png" alt="Nao4You" width="175" height="175" priority/>
-              </a>
-            </div>
-            <h2 class="fs-6 fw-normal text-center text-secondary mb-4">
-              Inscription - Coordonnées contact
-            </h2>
+<section class="py-5 d-flex justify-content-center align-xl-center w-100">
+  <div class="col-sm-12 col-md-11 col-lg-10 col-xl-9 col-xxl-8">
+    <div class="card border border-light-subtle rounded-3 shadow-sm">
+      <div class="card-body">
 
-            <!-- While user is not registered -->
-            <div *ngIf="!isSuccessful">
-              <form [formGroup]="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" novalidate>
-                <div class="row gy-2 overflow-hidden">
+        <!-- logo Nao4You -->
+        <div class="text-center">
+          <a href="https://www.facebook.com/profile.php?id=100086769682698">
+            <img ngSrc="assets/images/nao4you_logo.png" alt="Nao4You" width="175" height="175" priority />
+          </a>
+          <!-- Sign in -->
+          <p class="m-0 text-secondary text-center mb-4">
+            Déjà inscrit(e) ?
+            <a href="login" class="link-custom">Connectez-vous</a>
+          </p>
+        </div>
 
-                  <!-- First Name -->
-                  <div class="col-12">
-                    <div class="form-floating mb-3">
-                      <input type="text" 
-                             class="form-control" 
-                             formControlName="firstName" 
-                             name="firstName" 
-                             id="firstName"
-                             [ngClass]="{'is-invalid': f.submitted && form.get('firstName')?.invalid}" />
-                      <label for="firstName" class="form-label">Prénom 
-                        <span class="text-danger">*</span>
-                      </label>
-                      <!-- handling errors -->
-                      <div *ngIf="form.get('firstName')?.errors && f.submitted" class="invalid-feedback">
-                          <div *ngIf="form.get('firstName')?.errors?.['required']"></div>
-                        </div>
-                      </div>
-                    </div>
+        <!-- While user is not registered -->
+        <div *ngIf="!isSuccessful">
+          <form [formGroup]="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" novalidate>
 
-                  <!-- Last Name -->
-                  <div class="col-12">
-                    <div class="form-floating mb-3">
-                      <input type="text" 
-                             class="form-control" 
-                             formControlName="lastName" 
-                             name="lastName" 
-                             id="lastName"
-                             [ngClass]="{'is-invalid': f.submitted && form.get('lastName')?.invalid}"/>
-                      <label for="lastName" class="form-label">Nom 
-                        <span class="text-danger">*</span>
-                      </label>
-                     <!-- handling errors -->
-                     <div *ngIf="form.get('lastName')?.errors && f.submitted" class="invalid-feedback">
-                      <div *ngIf="form.get('lastName')?.errors?.['required']"></div>
-                    </div>
+
+            <!-- contact form -->
+            <div class="row">
+              <div class="col-12 col-lg-6">
+                <h2 class="fs-6 fw-normal text-center text-secondary mb-3">
+                  Inscription - Coordonnées contact
+                </h2>
+
+                <!-- First Name -->
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" formControlName="firstName" name="firstName" id="firstName"
+                    [ngClass]="{'is-invalid': f.submitted && form.get('firstName')?.invalid}" />
+                  <label for="firstName" class="form-label">Prénom
+                    <span class="text-danger">*</span>
+                  </label>
+                  <div *ngIf="form.get('firstName')?.errors && f.submitted" class="invalid-feedback">
+                    <div *ngIf="form.get('firstName')?.errors?.['required']"></div>
+                  </div>
+                </div>
+
+                <!-- Last Name -->
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" formControlName="lastName" name="lastName" id="lastName"
+                    [ngClass]="{'is-invalid': f.submitted && form.get('lastName')?.invalid}" />
+                  <label for="lastName" class="form-label">Nom
+                    <span class="text-danger">*</span>
+                  </label>
+                  <div *ngIf="form.get('lastName')?.errors && f.submitted" class="invalid-feedback">
+                    <div *ngIf="form.get('lastName')?.errors?.['required']"></div>
                   </div>
                 </div>
 
                 <!-- Gender -->
-                <div class="col-12">
-                  <div class="form-floating mb-3">
-                    <select class="form-control"
-                            formControlName="gender"
-                            id="gender"
-                            [ngClass]="{'is-invalid': f.submitted && form.get('gender')?.invalid }">
-                      <option value="Homme">homme</option>
-                      <option value="Femme">femme</option>
-                    </select>
-                    <label for="gender" class="form-label">Genre 
-                      <span class="text-danger">*</span>
-                    </label>
-                    <!-- handling errors -->
-                    <div *ngIf="form.get('gender')?.errors && f.submitted" class="invalid-feedback">
-                      <div *ngIf="form.get('gender')?.errors?.['required']"></div>
+                <div class="form-floating mb-3">
+                  <select class="form-control" formControlName="gender" id="gender"
+                    [ngClass]="{'is-invalid': f.submitted && form.get('gender')?.invalid }">
+                    <option value="Homme">homme</option>
+                    <option value="Femme">femme</option>
+                  </select>
+                  <label for="gender" class="form-label">Genre
+                    <span class="text-danger">*</span>
+                  </label>
+                  <div *ngIf="form.get('gender')?.errors && f.submitted" class="invalid-feedback">
+                    <div *ngIf="form.get('gender')?.errors?.['required']"></div>
+                  </div>
+                </div>
+
+                <!-- Email Address -->
+                <div class="form-floating mb-3">
+                  <input class="form-control" formControlName="email" name="email" id="email" autocomplete="email"
+                    [ngClass]="{'is-invalid': f.submitted && form.get('email')?.invalid}" />
+                  <label for="email" class="form-label">Adresse mail
+                    <span class="text-danger">*</span>
+                  </label>
+                  <div *ngIf="form.get('email')?.errors && f.submitted" class="invalid-feedback">
+                    <div *ngIf="form.get('email')?.errors?.['required']"></div>
+                    <div *ngIf="form.get('email')?.errors?.['email']">
+                      L'email n'est pas valide.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-floating mb-3">
+                  <input type="password" class="form-control" formControlName="password" id="password"
+                    [ngClass]="{'is-invalid': f.submitted && form.get('password')?.invalid }" />
+                  <label for="password" class="form-label">Mot de passe
+                    <span class="text-danger">*</span>
+                  </label>
+                  <div *ngIf="form.get('password')?.errors && f.submitted" class="invalid-feedback">
+                    <div *ngIf="form.get('password')?.errors?.['required']"></div>
+                    <div *ngIf="form.get('password')?.errors?.['minlength']">
+                      Minimum 6 caractères.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Phone Number -->
+                <div class="form-floating mb-4">
+                  <ngx-intl-tel-input [onlyCountries]="countriesList" [enableAutoCountrySelect]="true"
+                    [enablePlaceholder]="false" [selectFirstCountry]="true" [phoneValidation]="true"
+                    [separateDialCode]="true" [numberFormat]="PhoneNumberFormat.National" name="phone"
+                    formControlName="phone" class="form-control"
+                    [ngClass]="{'is-invalid': f.submitted && form.get('phone')?.invalid}" />
+                  <label for="phone" class="form-label">Numéro de téléphone
+                    <span class="text-danger">*</span>
+                  </label>
+                  <div *ngIf="form.get('phone')?.errors && f.submitted" class="invalid-feedback">
+                    <div *ngIf="form.get('phone')?.errors?.['required']"></div>
+                    <div *ngIf="form.get('phone')?.errors?.['validatePhoneNumber']">
+                      Numéro de téléphone invalide.
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- address form -->
+              <div class="col-12 col-lg-6">
+                <h2 class="fs-6 fw-normal text-center text-secondary mb-3">
+                  Inscription - Adresse postale
+                </h2>
+
+                <!-- street -->
+                <div formGroupName="address" class="form-floating mb-3">
+                  <input type="text" class="form-control" formControlName="street" name="street" id="street"
+                    [ngClass]="{'is-invalid': f.submitted && form.get('address.street')?.invalid}" />
+                  <label for="street" class="form-label">Adresse
+                    <span class="text-danger">*</span>
+                  </label>
+                  <div *ngIf="form.get('address.street')?.errors && f.submitted" class="invalid-feedback">
+                    <div *ngIf="form.get('address.street')?.errors?.['required']"></div>
+                    <div *ngIf="form.get('address.street')?.errors?.['invalidStreet']">
+                      chiffres, lettres (except. à, é, è, ù, etc.) et espaces uniquement.
                     </div>
                   </div>
                 </div>
 
 
-                  <!-- Email Address -->
-                  <div class="col-12">
-                    <div class="form-floating mb-3">
-                      <input class="form-control" 
-                             formControlName="email" 
-                             name="email" 
-                             id="email" 
-                             autocomplete="email"
-                             [ngClass]="{'is-invalid': f.submitted && form.get('email')?.invalid}" />
-                      <label for="email" class="form-label">Adresse mail 
-                        <span class="text-danger">*</span>
-                      </label>
-                      <!-- handling errors -->
-                      <div *ngIf="form.get('email')?.errors && f.submitted" class="invalid-feedback">
-                        <div *ngIf="form.get('email')?.errors?.['required']"></div>
-                        <div *ngIf="form.get('email')?.errors?.['email']">
-                          L'email n'est pas valide.
-                        </div>
-                      </div>
-                    </div>
+                <!-- Country -->
+                <div formGroupName="address" class="form-floating mb-3">
+                  <select class="form-control" formControlName="country" name="country" id="country"
+                    autocomplete="country"
+                    [ngClass]="{'is-invalid': f.submitted && form.get('address.country')?.invalid }">
+                    <option value="Belgique">Belgique</option>
+                    <option value="France">France</option>
+                  </select>
+                  <label for="country" class="form-label">Pays
+                    <span class="text-danger">*</span>
+                  </label>
+                  <div *ngIf="form.get('address.country')?.errors && f.submitted" class="invalid-feedback">
+                    <div *ngIf="form.get('address.country')?.errors?.['required']"></div>
                   </div>
+                </div>
 
-                  <!-- Password -->
-                  <div class="col-12">
-                    <div class="form-floating mb-3">
-                      <input type="password" 
-                             class="form-control" 
-                             formControlName="password" 
-                             id="password"
-                             [ngClass]="{'is-invalid': f.submitted && form.get('password')?.invalid }" />
-                      <label for="password" class="form-label">Mot de passe 
-                        <span class="text-danger">*</span>
-                      </label>
-                      <!-- handling errors -->
-                      <div *ngIf="form.get('password')?.errors && f.submitted" class="invalid-feedback">
-                        <div *ngIf="form.get('password')?.errors?.['required']"></div>
-                        <div *ngIf="form.get('password')?.errors?.['minlength']">
-                          Minimum 6 caractères.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-
-                  <!-- Phone Number -->
-                  <div class="col-12">
-                    <div class="form-floating mb-4">
-                      <ngx-intl-tel-input
-                            [onlyCountries]="countriesList" 
-                            [enableAutoCountrySelect]="true"
-                            [enablePlaceholder]="false" 
-                            [selectFirstCountry]="true" 
-                            [phoneValidation]="true"
-                            [separateDialCode]="true" 
-                            [numberFormat]="PhoneNumberFormat.National" 
-                            name="phone"
-                            formControlName="phone" 
-                            class="form-control"
-                            [ngClass]="{'is-invalid': f.submitted && form.get('phone')?.invalid}"/>
-                      <!-- handling errors -->
-                      <label for="phone" class="form-label">Numéro de téléphone 
-                        <span class="text-danger">*</span>
-                      </label>
-                      <div *ngIf="form.get('phone')?.errors && f.submitted" class="invalid-feedback">
-
-                        <div *ngIf="form.get('phone')?.errors?.['required']"></div>
-
-                        <div *ngIf="form.get('phone')?.errors?.['validatePhoneNumber']">
-                          Numéro de téléphone invalide.
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-
-                  <h2 class="fs-6 fw-normal text-center text-secondary">
-                    Inscription - Adresse postale
-                  </h2>
-
-                  <!-- Address -->
-
-                  <!-- Country -->
-                  <div class="col-12">
-                    <div formGroupName="address" class="form-floating mb-3">
-                      <select class="form-control"
-                              formControlName="country"
-                              name="country"
-                              id="country"
-                              autocomplete="country"
-                              [ngClass]="{'is-invalid': f.submitted && form.get('address.country')?.invalid }">
-                        <option value="Belgique">Belgique</option>
-                        <option value="France">France</option>
-                      </select>
-                      <label for="country" class="form-label">Pays 
-                        <span class="text-danger">*</span>
-                      </label>
-                      <!-- handling errors -->
-                      <div *ngIf="form.get('address.country')?.errors && f.submitted" class="invalid-feedback">
-                        <div *ngIf="form.get('address.country')?.errors?.['required']"></div>
-                      </div>
-                    </div>
-                  </div>
-
-            
-                  <!-- Terms and Conditions -->
-                  <div class="col-12">
-                    <div class="form-check">
-                      <input class="form-check-input" 
-                             type="checkbox" 
-                             value="" 
-                             name="iAgree" 
-                             id="iAgree" />
-                      <label class="form-check-label text-secondary" for="iAgree">
-                        J'accepte les
-                        <a href="#!" class="link-custom">termes et conditions</a>
-                      </label>
-                    </div>
-                  </div>
-
-                  <!-- Sign Up Button -->
-                  <div class="col-12">
-                    <div class="d-grid my-3">
-                      <button class="btn btn-custom btn-lg" type="submit">
-                        S'inscrire
-                      </button>
-                    </div>
-                  </div>
-
-                  <!-- Sign up -->
-                  <div class="col-12">
-                    <p class="m-0 text-secondary text-center">
-                      Déjà inscrit(e) ?
-                      <a href="login" class="link-custom">Connectez-vous</a>
-                    </p>
-                  </div>
-
-                  <!-- Errors Handling -->
-                  <div class="col-12">
-                    <div *ngIf="isSignUpFailed" class="alert alert-danger" role="alert">
-                      {{ message }}
+                <!-- Region -->
+                <div formGroupName="address" class="form-floating mb-3">
+                  <input type="text" class="form-control" formControlName="region" name="region" id="region"
+                    autocomplete="region"
+                    [ngClass]="{'is-invalid': f.submitted && form.get('address.region')?.invalid}" />
+                  <label for="region" class="form-label">Province [BE] - Région [FR]
+                    <span class="text-danger">*</span>
+                  </label>
+                  <div *ngIf="form.get('address.region')?.errors && f.submitted" class="invalid-feedback">
+                    <div *ngIf="form.get('address.region')?.errors?.['required']"></div>
+                    <div *ngIf="form.get('address.region')?.errors?.['invalidRegion']">
+                      chiffres, lettres (except. à, é, è, ù, etc.) et espaces uniquement.
                     </div>
                   </div>
                 </div>
-              </form>
+
+                <!-- City -->
+                <div formGroupName="address" class="form-floating mb-3">
+                  <input type="text" class="form-control" formControlName="city" name="city" id="city"
+                    [ngClass]="{'is-invalid': f.submitted && form.get('address.city')?.invalid}" />
+                  <label for="city" class="form-label">Ville
+                    <span class="text-danger">*</span>
+                  </label>
+                  <div *ngIf="form.get('address.city')?.errors && f.submitted" class="invalid-feedback">
+                    <div *ngIf="form.get('address.city')?.errors?.['required']"></div>
+                    <div *ngIf="form.get('address.city')?.errors?.['invalidCity']">
+                      chiffres, lettres (except. à, é, è, ù, etc.) et espaces uniquement.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Postal Code -->
+                <div formGroupName="address" class="form-floating mb-3">
+                  <input type="text" class="form-control" formControlName="postalCode" name="postalCode" id="postalCode"
+                    [ngClass]="{'is-invalid': f.submitted && form.get('address.postalCode')?.invalid}" />
+                  <label for="postalCode" class="form-label">Code postal
+                    <span class="text-danger">*</span>
+                  </label>
+                  <div *ngIf="form.get('address.postalCode')?.errors && f.submitted" class="invalid-feedback">
+                    <div *ngIf="form.get('address.postalCode')?.errors?.['required']"></div>
+                    <div *ngIf="form.get('address.postalCode')?.errors?.['invalidPostalCode']">
+                      4 chiffres [BE] - 5 chiffres [FR].
+                    </div>
+                  </div>
+                </div>
+
+              </div>
 
             </div>
 
-            <!-- When user is registered -->
-            <div *ngIf="isSuccessful" class="alert alert-success">
-              {{ message }} Vous allez être automatiquement redirigé.
+            <!-- Terms and Conditions -->
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" name="iAgree" id="iAgree" />
+              <label class="form-check-label text-secondary" for="iAgree">
+                J'accepte les
+                <a href="#!" class="link-custom">termes et conditions</a>
+              </label>
             </div>
-          </div>
+
+            <!-- Sign Up Button -->
+            <div class="col-12 col-lg-4 d-grid my-3">
+              <button class="btn btn-custom btn-md" type="submit">
+                S'inscrire
+              </button>
+            </div>
+
+            <!-- Errors Handling -->
+            <div class="col-12">
+              <div *ngIf="isSignUpFailed" class="alert alert-danger" role="alert">
+                {{ message }}
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- When user is registered -->
+        <div *ngIf="isSuccessful" class="alert alert-success">
+          {{ message }} Vous allez être automatiquement redirigé.
         </div>
       </div>
     </div>

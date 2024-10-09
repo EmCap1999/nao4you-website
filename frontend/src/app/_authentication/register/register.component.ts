@@ -3,7 +3,12 @@ import { AuthService } from '../../_services/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input-gg';
-import { phoneNumberValidator } from './phone.validator';
+import { phoneNumberValidator } from './validators/phone.validator';
+import { streetValidator } from './validators/address.validator';
+import { regionValidator } from './validators/region.validator';
+import { cityValidator } from './validators/city.validator';
+import { postalCodeValidator } from './validators/postalCode.validator';
+
 
 @Component({
   selector: 'app-register',
@@ -32,11 +37,11 @@ export class RegisterComponent {
       password: new FormControl(undefined, [Validators.required, Validators.minLength(6)]),
       phone: new FormControl(undefined, [Validators.required, phoneNumberValidator()]),
       address: new FormGroup({
-        // street: new FormControl(undefined),
+        street: new FormControl(undefined, [Validators.required, streetValidator()]),
         country: new FormControl(undefined, [Validators.required]),
-        // province: new FormControl(undefined),
-        // city: new FormControl(undefined, [Validators.required]),
-        // postalCode: new FormControl(undefined, [Validators.required]),
+        region: new FormControl(undefined, [Validators.required, regionValidator()]),
+        city: new FormControl(undefined, [Validators.required, cityValidator()]),
+        postalCode: new FormControl(undefined, [Validators.required, postalCodeValidator()]),
       })
     });
   }
