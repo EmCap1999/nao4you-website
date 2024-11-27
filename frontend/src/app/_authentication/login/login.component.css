@@ -1,3 +1,12 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  text-align: center;
+  align-items: center;
+  margin-top: 6rem;
+}
+
 .link-custom {
   color: rgba(185, 136, 174, 255);
   text-decoration: none;
@@ -27,4 +36,10 @@
 .alert-danger {
   background-color: rgba(255, 0, 0, 0.1);
   border-color: rgba(255, 0, 0, 0.2);
+}
+
+@supports (height: 100dvh) {
+  .login {
+    height: 100dvh;
+  }
 }
