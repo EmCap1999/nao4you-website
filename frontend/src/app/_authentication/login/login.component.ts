@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../_services/auth.service';
 import { Router } from '@angular/router';
-import { FB_URL } from '../../../../config';
+import { assetsUrl } from '../../config/assets.url';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit {
   isLoginFailed: boolean = false;
   user: string = '';
   message: string = '';
-  facebook: string = FB_URL;
+  facebookUrl: string = assetsUrl.facebookUrl;
+  logoUrl: string = assetsUrl.logoUrl;
 
   constructor(
     private authService: AuthService,

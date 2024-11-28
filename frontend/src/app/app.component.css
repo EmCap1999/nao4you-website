@@ -1,0 +1,9 @@
+.container {
+    height: 100vh;
+}
+
+@supports (height: 100dvh) {
+    .container {
+        height: 100dvh;
+    }
+}
