@@ -1,10 +1,13 @@
 .login {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   text-align: center;
   align-items: center;
-  margin-top: 6rem;
+  overflow: auto;
+  padding: 0;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 .link-custom {

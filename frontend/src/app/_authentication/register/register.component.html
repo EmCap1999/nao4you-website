@@ -1,15 +1,15 @@
-<section class="py-5 d-flex justify-content-center align-xl-center w-100">
-  <div class="col-sm-12 col-md-11 col-lg-10 col-xl-9 col-xxl-8">
+<section class="sign-up">
+  <div class="col-10 col-sm-9 col-md-8 col-xxl-6">
     <div class="card border border-light-subtle rounded-3 shadow-sm">
       <div class="card-body">
 
         <!-- logo Nao4You -->
         <div class="text-center">
-          <a href="https://www.facebook.com/profile.php?id=100086769682698">
-            <img ngSrc="assets/images/nao4you_logo.png" alt="Nao4You" width="175" height="175" priority />
+          <a href="{{ facebookUrl }}">
+            <img ngSrc="{{ logoUrl }}" alt="Nao4You" width="175" height="175" priority />
           </a>
           <!-- Sign in -->
-          <p class="m-0 text-secondary text-center mb-4">
+          <p class="text-secondary text-center mb-3">
             Déjà inscrit(e) ?
             <a href="login" class="link-custom">Connectez-vous</a>
           </p>
@@ -214,7 +214,7 @@
             </div>
 
             <!-- Sign Up Button -->
-            <div class="col-12 col-lg-4 d-grid my-3">
+            <div class="col-12 col-lg-4 d-grid">
               <button class="btn btn-custom btn-md" type="submit">
                 S'inscrire
               </button>

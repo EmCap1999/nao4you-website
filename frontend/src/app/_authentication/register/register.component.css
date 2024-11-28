@@ -1,3 +1,15 @@
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-align: center;
+  align-items: center;
+  overflow: auto;
+  padding: 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .link-custom {
   color: rgba(185, 136, 174, 255);
   text-decoration: none;
@@ -29,11 +41,18 @@
   border-color: rgba(255, 0, 0, 0.2);
 }
 
-@media (min-width: 1400px) {
-  .align-xl-center {
-    height: 100vh;
-    align-items: center;
-  }
+.form-check{
+  position: relative;
+  text-align: start;
+  margin-bottom: 1rem;
 }
 
+ngx-intl-tel-input {
+  text-align: start;
+}
 
+@supports (height: 100dvh) {
+  .sign-up {
+    height: 100dvh;
+  }
+}

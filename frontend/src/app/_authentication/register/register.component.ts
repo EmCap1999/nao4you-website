@@ -8,6 +8,7 @@ import { streetValidator } from './validators/address.validator';
 import { regionValidator } from './validators/region.validator';
 import { cityValidator } from './validators/city.validator';
 import { postalCodeValidator } from './validators/postalCode.validator';
+import { assetsUrl } from '../../config/assets.url';
 
 
 @Component({
@@ -17,6 +18,8 @@ import { postalCodeValidator } from './validators/postalCode.validator';
 })
 export class RegisterComponent {
   form: FormGroup;
+  facebookUrl: string = assetsUrl.facebookUrl;
+  logoUrl: string = assetsUrl.logoUrl
 
   // phone params instances
   CountryISO = CountryISO;
