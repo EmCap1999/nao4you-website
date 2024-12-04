@@ -1,29 +1,49 @@
-<nav class="navbar navbar-expand-lg fixed-top bg-primary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href = home>
-            <img ngSrc="assets/images/nao4you_logo.png" 
-            alt="Nao4You" 
-            width="80" 
-            height="80"
-            priority
-            class="d-inline-block align-text-top">
+<mat-toolbar color="primary" class="app-toolbar">
+    <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <div class="logos">
+        <a href="https://www.facebook.com/profile.php?id=100086769682698" target="_blank">
+            <i class="bi bi-facebook text-white"></i>
+        </a><a href="https://www.instagram.com/nao_foryou?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+            target="_blank">
+            <i class="bi bi-instagram text-white"></i>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="home">Bougies</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="home">Produits d'ambiance</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="home">Vêtements</a>
-                </li>
-            </ul>
-        </div>
     </div>
-</nav>
+</mat-toolbar>
+
+<mat-sidenav-container class="app-container">
+    <mat-sidenav [ngClass]="!isCollapsed ? 'expanded' : ''" [mode]="isMobile ? 'over' : 'side'"
+        [opened]="isMobile ? 'false' : 'true'" class="sidebar">
+
+        <mat-nav-list class="nav-list">
+
+            <a mat-list-item href="/home" class="nav-item">
+                <span class="nav-item-content">
+                    <i class='fas fa-home'></i>
+                    <span *ngIf="!isCollapsed" class="nav-item-text">Accueil</span>
+                </span>
+            </a>
+            <a mat-list-item (click)="logout()" class="nav-item">
+                <span class="nav-item-content">
+                    <i class='fas fa-sign-out-alt'></i>
+                    <span *ngIf="!isCollapsed" class="nav-item-text">Déconnexion</span>
+                </span>
+            </a>
+
+        </mat-nav-list>
+
+        <div class="footer">
+            <app-footer></app-footer>
+        </div>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

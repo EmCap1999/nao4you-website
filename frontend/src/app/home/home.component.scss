@@ -1,0 +1,141 @@
+/* =========== NAVBAR DESIGN =========== */
+mat-toolbar {
+    height: 10vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: rgba(173, 132, 168, 1);
+}
+
+mat-sidenav-content {
+    display: flex;
+    height: 90vh;
+    text-align: center;
+    justify-content: center;
+    overflow-y: auto;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.spacer {
+    flex-grow: 0.9;
+}
+
+.logos {
+
+    i {
+        font-size: 1.5rem;
+        margin-left: 1.2rem;
+        display: inline-block;
+        transition: transform 0.3s ease;
+    }
+
+    a:hover i {
+        transform: scale(1.2);
+    }
+}
+
+/* =========== SIDEBAR DESIGN =========== */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 14rem;
+    text-align: center;
+    background-color: rgba(173, 132, 168, 1);
+    padding: 0;
+    border-radius: 0;
+}
+
+mat-nav-list {
+    margin-bottom: 13vh;
+}
+
+
+.nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 2rem 2rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-item-content {
+        display: flex;
+        align-items: start;
+        color: white;
+        gap: 1rem;
+        font-size: large;
+    }
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+}
+
+
+/* =========== RESPONSIVE DESIGN =========== */
+@supports (height: 100dvh) {
+    .sidebar {
+        height: 90dvh;
+    }
+
+    mat-toolbar {
+        height: 10dvh
+    }
+
+    mat-sidenav-content {
+        height: 90dvh;
+    }
+
+}
+
+@media (max-width: 30rem) {
+    .logo {
+        width: 130px;
+    }
+
+    .nav-item {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 30rem) and (max-width: 45rem) {
+    .logo {
+        width: 140px;
+    }
+
+    .nav-item {
+        padding: 1.2rem;
+    }
+
+}
+
+@media (min-width: 45rem) and (max-width: 60rem) {
+    .logo {
+        width: 150px;
+    }
+}
+
+@media (min-width: 60rem) and (max-width: 75rem) {
+    .logo {
+        width: 165px;
+    }
+}
+
+@media (min-width: 75rem) {
+    .logo {
+        width: 175px;
+    }
+}

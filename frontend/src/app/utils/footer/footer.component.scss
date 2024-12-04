@@ -1,0 +1,18 @@
+.sidebar-bottom-icons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-top: 0.2rem solid rgba(255, 255, 255, 0.75);
+    background-color: rgba(173, 132, 168, 1);
+
+    span a {
+        color: white;
+        font-size: 1.2rem;
+    }
+
+    span a:hover i {
+        transform: scale(1.2);
+    }
+
+}

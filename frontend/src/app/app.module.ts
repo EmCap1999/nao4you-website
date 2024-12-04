@@ -14,7 +14,17 @@ import { provideHttpClient } from '@angular/common/http';
 import { httpInterceptorProviders } from './_helpers/http.interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input-gg';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { FooterComponent } from './utils/footer/footer.component';
+
+
+
 
 
 @NgModule({
@@ -22,8 +32,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
     ProfileComponent,
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +44,14 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     ReactiveFormsModule,
     NgOptimizedImage,
     BrowserAnimationsModule,
-    NgxIntlTelInputModule
+    NgxIntlTelInputModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [provideHttpClient(), httpInterceptorProviders, provideAnimationsAsync()],
   bootstrap: [AppComponent],

@@ -1,9 +1,9 @@
-.container {
+router-outlet {
     height: 100vh;
 }
 
 @supports (height: 100dvh) {
-    .container {
+    router-outlet {
         height: 100dvh;
     }
 }

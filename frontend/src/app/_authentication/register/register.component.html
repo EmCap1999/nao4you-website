@@ -200,26 +200,26 @@
                   </div>
                 </div>
 
+                <!-- Terms and Conditions -->
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" name="iAgree" id="iAgree" />
+                  <label class="form-check-label text-secondary" for="iAgree">
+                    J'accepte les
+                    <a href="#!" class="link-custom">termes et conditions</a>
+                  </label>
+                </div>
+
+                <!-- Sign Up Button -->
+                <div class="d-grid col-12 col-lg-6 ms-auto">
+                  <button class="btn btn-custom btn-md" type="submit">
+                    S'inscrire
+                  </button>
+                </div>
+
               </div>
 
             </div>
-
-            <!-- Terms and Conditions -->
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" name="iAgree" id="iAgree" />
-              <label class="form-check-label text-secondary" for="iAgree">
-                J'accepte les
-                <a href="#!" class="link-custom">termes et conditions</a>
-              </label>
-            </div>
-
-            <!-- Sign Up Button -->
-            <div class="col-12 col-lg-4 d-grid">
-              <button class="btn btn-custom btn-md" type="submit">
-                S'inscrire
-              </button>
-            </div>
-
+            
             <!-- Errors Handling -->
             <div class="col-12">
               <div *ngIf="isSignUpFailed" class="alert alert-danger" role="alert">
