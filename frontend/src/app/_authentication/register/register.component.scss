@@ -1,7 +1,7 @@
 .sign-up {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 90vh;
   text-align: center;
   align-items: center;
   overflow: auto;
@@ -53,6 +53,6 @@ ngx-intl-tel-input {
 
 @supports (height: 100dvh) {
   .sign-up {
-    height: 100dvh;
+    height: 90dvh;
   }
 }

@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="app-toolbar">
+<mat-toolbar color="primary" class="app-toolbar" *ngIf="isLoggedIn">
     <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
         <mat-icon>menu</mat-icon>
     </button>
@@ -13,16 +13,22 @@
     </div>
 </mat-toolbar>
 
-<mat-sidenav-container class="app-container">
+<mat-sidenav-container class="app-container" *ngIf="isLoggedIn">
     <mat-sidenav [ngClass]="!isCollapsed ? 'expanded' : ''" [mode]="isMobile ? 'over' : 'side'"
         [opened]="isMobile ? 'false' : 'true'" class="sidebar">
 
         <mat-nav-list class="nav-list">
 
-            <a mat-list-item href="/home" class="nav-item">
+            <a mat-list-item href="/home" routerLinkActive="active" class="nav-item">
                 <span class="nav-item-content">
                     <i class='fas fa-home'></i>
                     <span *ngIf="!isCollapsed" class="nav-item-text">Accueil</span>
+                </span>
+            </a>
+            <a mat-list-item href="/profile" class="nav-item">
+                <span class="nav-item-content">
+                    <i class='fas fa-user'></i>
+                    <span *ngIf="!isCollapsed" class="nav-item-text">Profile</span>
                 </span>
             </a>
             <a mat-list-item (click)="logout()" class="nav-item">
@@ -34,16 +40,14 @@
 
         </mat-nav-list>
 
-        <div class="footer">
-            <app-footer></app-footer>
-        </div>
+        <app-footer></app-footer>
 
     </mat-sidenav>
 
     <mat-sidenav-content>
-        <div class="content">
-            <router-outlet></router-outlet>
-        </div>
+
+        <router-outlet></router-outlet>
+        
     </mat-sidenav-content>
 
 </mat-sidenav-container>

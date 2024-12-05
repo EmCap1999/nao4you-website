@@ -1,0 +1,28 @@
+.footer-content {
+    color: white;
+    margin: 0;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    position: absolute; 
+    width: 100%;
+    background-color: rgba(173, 132, 168);
+    z-index: 10;
+    font-size: medium;
+}
+
+.bi {
+    margin-right: 5px;
+}
+
+@supports (height: 100dvh) {
+    footer {
+        height: 10dvh;
+    }
+
+}

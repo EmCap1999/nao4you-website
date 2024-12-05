@@ -12,7 +12,6 @@ export class LoginComponent implements OnInit {
   form: any = {};
   isLoggedIn: boolean = false;
   isLoginFailed: boolean = false;
-  user: string = '';
   message: string = '';
   facebookUrl: string = assetsUrl.facebookUrl;
   logoUrl: string = assetsUrl.logoUrl;

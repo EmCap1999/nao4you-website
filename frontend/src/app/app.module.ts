@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './_authentication/login/login.component';
 import { RegisterComponent } from './_authentication/register/register.component';
-import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './utils/navbar/navbar.component';
 import { ProfileComponent } from './_authentication/profile/profile.component';
 import { provideHttpClient } from '@angular/common/http';
 import { httpInterceptorProviders } from './_helpers/http.interceptor.service';
@@ -21,10 +21,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
-import { FooterComponent } from './utils/footer/footer.component';
-
-
-
+import { FooterComponent } from './utils/footer-sidebar/footer.component';
+import { FooterBottomComponent } from './utils/footer-bottom/footer-bottom.component';
+import { HomeComponent } from './_content/home/home.component';
 
 
 @NgModule({
@@ -33,8 +32,10 @@ import { FooterComponent } from './utils/footer/footer.component';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    HomeComponent,
-    FooterComponent
+    NavbarComponent,
+    FooterComponent,
+    FooterBottomComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,15 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
-import { Router } from '@angular/router';
+import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { AuthService } from '../../_services/auth.service';
+import { Router } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrl: './navbar.component.scss'
 })
-export class HomeComponent implements OnInit {
+export class NavbarComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
   isMobile = true;

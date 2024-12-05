@@ -1,22 +1,22 @@
-<section class="login">
-  <div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xxl-3">
-    <div class="card border border-light-subtle rounded-3 shadow-sm">
-      <div class="card-body">
+<!-- While user is not logged in -->
+<div *ngIf="!isLoggedIn">
+  <section class="login">
+    <div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xxl-3">
+      <div class="card border border-light-subtle rounded-3 shadow-sm">
+        <div class="card-body">
 
-        <!-- logo Nao4You -->
-        <div class="text-center">
-          <a [href]="facebookUrl">
-            <img ngSrc="{{ logoUrl }}" alt="Nao4You" width="175" height="175" priority />
-          </a>
-        </div>
+          <!-- logo Nao4You -->
+          <div class="text-center">
+            <a [href]="facebookUrl">
+              <img ngSrc="{{ logoUrl }}" alt="Nao4You" width="175" height="175" priority />
+            </a>
+          </div>
 
-        <!-- connexion form -->
-        <h2 class="fs-6 fw-normal text-center text-secondary mb-4">
-          Connectez-vous à votre compte
-        </h2>
+          <!-- connexion form -->
+          <h2 class="fs-6 fw-normal text-center text-secondary mb-4">
+            Connectez-vous à votre compte
+          </h2>
 
-        <!-- While user is not logged in -->
-        <div *ngIf="!isLoggedIn">
           <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
             <div class="row gy-2 overflow-hidden">
               <!-- email address -->
@@ -86,5 +86,6 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+  <app-footer-bottom></app-footer-bottom>
+</div>

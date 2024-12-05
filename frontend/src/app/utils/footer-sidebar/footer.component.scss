@@ -5,14 +5,24 @@
     padding: 0.75rem 0;
     border-top: 0.2rem solid rgba(255, 255, 255, 0.75);
     background-color: rgba(173, 132, 168, 1);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10vh;
 
     span a {
         color: white;
         font-size: 1.2rem;
     }
-
     span a:hover i {
         transform: scale(1.2);
     }
 
 }
+
+@supports (height: 100dvh) {
+    .sidebar-bottom-icons {
+      height: 10dvh;
+    }
+  
+  }
