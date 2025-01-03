@@ -3,6 +3,14 @@ import { AuthService } from '../../_services/auth.service';
 import { Router } from '@angular/router';
 import { assetsUrl } from '../../config/assets.url';
 
+import {
+  faUser,
+  faKey,
+  faEye,
+  faEyeSlash
+} from '@fortawesome/free-solid-svg-icons';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,9 +20,15 @@ export class LoginComponent implements OnInit {
   form: any = {};
   isLoggedIn: boolean = false;
   isLoginFailed: boolean = false;
+  passwordVisible: boolean = false;
   message: string = '';
   facebookUrl: string = assetsUrl.facebookUrl;
   logoUrl: string = assetsUrl.logoUrl;
+
+  faUser = faUser;
+  faKey = faKey;
+  faEye = faEye;
+  faEyeSlash = faEyeSlash;
 
   constructor(
     private authService: AuthService,
@@ -32,6 +46,10 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = false;
       },
     });
+  }
+
+  togglePassword() {
+    this.passwordVisible = !this.passwordVisible;
   }
 
   onSubmit(): void {
