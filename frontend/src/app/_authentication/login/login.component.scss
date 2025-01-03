@@ -10,9 +10,8 @@
   padding-bottom: 1.5rem;
 }
 
-.invalid-feedback {
-  font-size: small;
-  text-align: left;
+.fw-medium {
+  font-weight: 600;
 }
 
 .position-relative {
@@ -40,6 +39,11 @@
 .alert-danger {
   background-color: rgba(255, 0, 0, 0.1);
   border-color: rgba(255, 0, 0, 0.2);
+}
+
+.invalid-feedback {
+  font-size: small;
+  text-align: left;
 }
 
 .link-custom {

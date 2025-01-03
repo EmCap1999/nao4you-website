@@ -18,10 +18,15 @@
 .link-custom {
   color: rgba(185, 136, 174, 255);
   text-decoration: none;
+  font-weight: 500;
 }
 
 .link-custom:hover {
   color: rgba(185, 136, 174, 255);
+}
+
+.fw-medium {
+  font-weight: 600;
 }
 
 .btn-custom {
