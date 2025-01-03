@@ -6,11 +6,14 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 
 import {
   faBars,
-  faCalendarCheck,
-  faUsers,
-  faUserPlus,
   faCog,
-  faRightFromBracket
+  faRightFromBracket,
+  faGift,
+  faHandSparkles,
+  faFire,
+  faTshirt,
+  faGlasses,
+  faRing
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -27,12 +30,14 @@ export class NavbarComponent {
   message: string = '';
 
   faBars = faBars;
-  faCalendarCheck = faCalendarCheck;
-  faUsers = faUsers;
-  faUserPlus = faUserPlus;
   faCog = faCog;
+  faGift = faGift;
   faRightFromBracket = faRightFromBracket;
-
+  faHandSparkles = faHandSparkles;
+  faFire = faFire;
+  faTshirt = faTshirt;
+  faGlasses = faGlasses;
+  faRing = faRing;
 
   constructor(
     private authService: AuthService,

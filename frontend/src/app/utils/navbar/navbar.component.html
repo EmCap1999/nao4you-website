@@ -20,31 +20,55 @@
 
         <mat-nav-list>
 
-            <!-- calendar -->
-            <a mat-list-item href="calendar" routerLinkActive="active" class="nav-item">
+            <!-- Accessoires -->
+            <a mat-list-item href="#!" routerLinkActive="active" class="nav-item">
                 <span class="nav-item-content">
-                    <fa-icon [icon]="faCalendarCheck"></fa-icon>
-                    <span *ngIf="!isCollapsed" class="nav-item-text">Calendrier</span>
+                    <fa-icon [icon]="faRing"></fa-icon>
+                    <span *ngIf="!isCollapsed" class="nav-item-text">Bijoux</span>
                 </span>
             </a>
 
-            <!-- members -->
-            <a mat-list-item href="membres" routerLinkActive="active" class="nav-item">
+            <!-- Bijoux -->
+            <a mat-list-item href="#!" routerLinkActive="active" class="nav-item">
                 <span class="nav-item-content">
-                    <fa-icon [icon]="faUsers"></fa-icon>
-                    <span *ngIf="!isCollapsed" class="nav-item-text">Membres</span>
+                    <fa-icon [icon]="faGlasses"></fa-icon>
+                    <span *ngIf="!isCollapsed" class="nav-item-text">Accessoires</span>
                 </span>
             </a>
 
-            <!-- sign up -->
-            <a mat-list-item href="register" routerLinkActive="active" class="nav-item">
+            <!-- Vêtements -->
+            <a mat-list-item href="#!" routerLinkActive="active" class="nav-item">
                 <span class="nav-item-content">
-                    <fa-icon [icon]="faUserPlus"></fa-icon>
-                    <span *ngIf="!isCollapsed" class="nav-item-text">Nouveau membre</span>
+                    <fa-icon [icon]="faTshirt"></fa-icon>
+                    <span *ngIf="!isCollapsed" class="nav-item-text">Vêtements</span>
                 </span>
             </a>
 
-            <!-- profile -->
+            <!-- produits d'ambiance -->
+            <a mat-list-item href="#!" routerLinkActive="active" class="nav-item">
+                <span class="nav-item-content">
+                    <fa-icon [icon]="faFire"></fa-icon>
+                    <span *ngIf="!isCollapsed" class="nav-item-text">Produits d'ambiance</span>
+                </span>
+            </a>
+
+            <!-- Beauté -->
+            <a mat-list-item href="#!" routerLinkActive="active" class="nav-item">
+                <span class="nav-item-content">
+                    <fa-icon [icon]="faHandSparkles"></fa-icon>
+                    <span *ngIf="!isCollapsed" class="nav-item-text">Beauté</span>
+                </span>
+            </a>
+
+            <!-- Coffrets-->
+            <a mat-list-item href="#!" routerLinkActive="active" class="nav-item">
+                <span class="nav-item-content">
+                    <fa-icon [icon]="faGift"></fa-icon>
+                    <span *ngIf="!isCollapsed" class="nav-item-text">Coffrets</span>
+                </span>
+            </a>
+
+            <!-- profil -->
             <a mat-list-item href="profile" routerLinkActive="active" class="nav-item">
                 <span class="nav-item-content">
                     <fa-icon [icon]="faCog"></fa-icon>

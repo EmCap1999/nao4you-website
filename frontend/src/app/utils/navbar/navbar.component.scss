@@ -38,12 +38,12 @@ mat-nav-list {
 .toolbar-content {
     display: flex;
     flex-direction: row;
+    gap: 1rem;
     align-items: center;
-    justify-content: space-evenly;
     width: 100%;
 
     .spacer {
-        flex-grow: 0.95;
+        flex-grow: 0.98;
     }
 
     .social-link {
@@ -52,7 +52,6 @@ mat-nav-list {
         color: white;
         transition: all 0.5s ease;
         font-size: x-large;
-
         &:hover {
             transform: scale(1.1);
         }
@@ -65,16 +64,16 @@ mat-nav-list {
     display: flex;
     flex-direction: column;
     height: 90vh;
-    width: 17rem;
+    width: 18rem;
     overflow: hidden;
     background-color: rgba(173, 132, 168, 1);
     padding: 0;
-    border-radius: 0
+    border-radius: 0;
 }
 
 .nav-item {
     transition: all 0.3s ease;
-    padding: 2.5rem 1.75rem;
+    padding:1.9rem 1.75rem;
 
 
     &:hover {

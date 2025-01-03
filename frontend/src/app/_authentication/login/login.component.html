@@ -24,7 +24,7 @@
             <div class="col-12">
               <div class="form-floating mb-3">
                 <input type="email" class="form-control" id="email" name="email" [(ngModel)]="form.email" required
-                  #email="ngModel" autocomplete="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
+                  #email="ngModel" autocomplete="email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                   [ngClass]="{'is-invalid': f.submitted && email.errors}" />
                 <label for="email">
                   <fa-icon [icon]="faUser" class="me-2"></fa-icon>Adresse mail
