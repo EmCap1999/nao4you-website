@@ -5,7 +5,6 @@ config.ts
 .prettierrc
 .prettierignore
 package-lock.json
-package.json
 
 # Compiled output
 /dist

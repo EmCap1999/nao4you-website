@@ -2,75 +2,93 @@
 mat-toolbar {
     height: 10vh;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    flex-direction: row;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: rgba(173, 132, 168, 1);
 }
 
 mat-sidenav-content {
-    display: flex;
-    height: 90vh;
-    text-align: center;
-    justify-content: center;
-    overflow-y: auto;
+    overflow: hidden;
     background-color: white;
+    overflow-y: auto;
 }
 
-.spacer {
-    flex-grow: 0.9;
+mat-nav-list {
+    height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0;
 }
 
-.logos {
+::ng-deep button[mat-icon-button] {
+    transition: all 0.3s ease;
 
-    i {
-        font-size: 1.5rem;
-        margin-left: 1.2rem;
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(1.05);
+    }
+
+}
+
+.toolbar-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+
+    .spacer {
+        flex-grow: 0.95;
+    }
+
+    .social-link {
+        text-align: center;
         display: inline-block;
-        transition: transform 0.3s ease;
-    }
+        color: white;
+        transition: all 0.5s ease;
+        font-size: x-large;
 
-    a:hover i {
-        transform: scale(1.2);
+        &:hover {
+            transform: scale(1.1);
+        }
     }
 }
+
 
 /* =========== SIDEBAR DESIGN =========== */
 .sidebar {
     display: flex;
     flex-direction: column;
     height: 90vh;
-    width: 14rem;
-    text-align: center;
+    width: 17rem;
+    overflow: hidden;
     background-color: rgba(173, 132, 168, 1);
     padding: 0;
-    border-radius: 0;
+    border-radius: 0
 }
 
 .nav-item {
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding: 2rem 2rem;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    padding: 2.5rem 1.75rem;
+
 
     &:hover {
-        background-color: rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
     }
 
     .nav-item-content {
         display: flex;
-        align-items: start;
+        align-items: center;
+        gap: 0.9rem;
         color: white;
-        gap: 1rem;
         font-size: large;
     }
 }
-
 
 /* =========== RESPONSIVE DESIGN =========== */
 @supports (height: 100dvh) {
@@ -86,44 +104,18 @@ mat-sidenav-content {
         height: 90dvh;
     }
 
-}
-
-@media (max-width: 30rem) {
-    .logo {
-        width: 130px;
-    }
-
-    .nav-item {
-        padding: 1rem;
-        font-size: 0.9rem;
-    }
-}
-
-@media (min-width: 30rem) and (max-width: 45rem) {
-    .logo {
-        width: 140px;
-    }
-
-    .nav-item {
-        padding: 1.2rem;
+    mat-nav-list {
+        height: 70dvh;
     }
 
 }
 
-@media (min-width: 45rem) and (max-width: 60rem) {
-    .logo {
-        width: 150px;
-    }
-}
+@media (max-width: 30rem) {}
 
-@media (min-width: 60rem) and (max-width: 75rem) {
-    .logo {
-        width: 165px;
-    }
-}
+@media (min-width: 30rem) and (max-width: 45rem) {}
 
-@media (min-width: 75rem) {
-    .logo {
-        width: 175px;
-    }
-}
+@media (min-width: 45rem) and (max-width: 60rem) {}
+
+@media (min-width: 60rem) and (max-width: 75rem) {}
+
+@media (min-width: 75rem) {}

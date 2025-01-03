@@ -24,6 +24,7 @@ import { MatListModule } from '@angular/material/list';
 import { FooterComponent } from './utils/footer-sidebar/footer.component';
 import { FooterBottomComponent } from './utils/footer-bottom/footer-bottom.component';
 import { HomeComponent } from './_content/home/home.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { HomeComponent } from './_content/home/home.component';
     MatButtonModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    FontAwesomeModule
   ],
   providers: [provideHttpClient(), httpInterceptorProviders, provideAnimationsAsync()],
   bootstrap: [AppComponent],

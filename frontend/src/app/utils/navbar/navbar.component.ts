@@ -4,6 +4,15 @@ import { AuthService } from '../../_services/auth.service';
 import { Router } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 
+import {
+  faBars,
+  faCalendarCheck,
+  faUsers,
+  faUserPlus,
+  faCog,
+  faRightFromBracket
+} from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -16,6 +25,14 @@ export class NavbarComponent {
   isCollapsed = false;
   isLoggedIn: boolean = false;
   message: string = '';
+
+  faBars = faBars;
+  faCalendarCheck = faCalendarCheck;
+  faUsers = faUsers;
+  faUserPlus = faUserPlus;
+  faCog = faCog;
+  faRightFromBracket = faRightFromBracket;
+
 
   constructor(
     private authService: AuthService,
