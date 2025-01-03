@@ -1,13 +1,18 @@
 .sign-up {
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  height: 85vh;
   text-align: center;
   align-items: center;
-  overflow: auto;
+  overflow-y: auto;
   padding: 0;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.invalid-feedback {
+  font-size: small;
+  text-align: left;
 }
 
 .link-custom {
@@ -53,6 +58,6 @@ ngx-intl-tel-input {
 
 @supports (height: 100dvh) {
   .sign-up {
-    height: 90dvh;
+    height: 85dvh;
   }
 }

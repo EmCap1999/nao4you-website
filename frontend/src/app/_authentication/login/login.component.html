@@ -22,43 +22,43 @@
 
             <!-- email address -->
             <div class="col-12">
-              <div class="mb-3">
-                <label for="email" class="form-label text-start d-block">
-                  <fa-icon [icon]="faUser"></fa-icon>adresse mail
-                </label>
+              <div class="form-floating mb-3">
                 <input type="email" class="form-control" id="email" name="email" [(ngModel)]="form.email" required
-                  #email="ngModel" autocomplete="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [ngClass]="{'is-invalid': f.submitted && email.errors}" />
-                <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
+                  #email="ngModel" autocomplete="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
+                  [ngClass]="{'is-invalid': f.submitted && email.errors}" />
+                <label for="email">
+                  <fa-icon [icon]="faUser" class="me-2"></fa-icon>Adresse mail
+                  <span class="text-danger">*</span>
+                </label>
+                <div *ngIf="email.errors && (email.dirty || email.touched)" class="invalid-feedback">
                   <div *ngIf="email.errors['required']"></div>
-                  <div *ngIf="email.errors['pattern']">
-                    adresse mail incorrecte
-                  </div>
+                  <div *ngIf="email.errors['pattern']">adresse mail non-valide.</div>
                 </div>
               </div>
             </div>
 
+
             <!-- password -->
             <div class="col-12">
-              <div class="mb-4 position-relative">
-
-                <label for="password" class="form-label text-start d-block">
-                  <fa-icon [icon]="faKey"></fa-icon>Mot de passe
-                </label>
+              <div class="form-floating mb-3 position-relative">
 
                 <input type="{{ passwordVisible ? 'text' : 'password' }}" class="form-control" id="password"
                   name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel"
                   [ngClass]="{'is-invalid': f.submitted && password.errors}" />
+
+                <label for="password">
+                  <fa-icon [icon]="faKey" class="me-2"></fa-icon>Mot de passe
+                  <span class="text-danger">*</span>
+                </label>
 
                 <button type="button" class="btn password-toggle-btn" (click)="togglePassword()"
                   title="Afficher/masquer le mot de passe">
                   <fa-icon [icon]="passwordVisible ? faEye : faEyeSlash"></fa-icon>
                 </button>
 
-                <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
+                <div *ngIf="password.errors && (password.dirty || password.touched)" class="invalid-feedback">
                   <div *ngIf="password.errors['required']"></div>
-                  <div *ngIf="password.errors['minlength']">
-                    Minimum 6 caractères
-                  </div>
+                  <div *ngIf="password.errors['minlength']">minimum 6 caractères.</div>
                 </div>
               </div>
             </div>

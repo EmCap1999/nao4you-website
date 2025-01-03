@@ -22,7 +22,7 @@
     color: rgb(0, 0, 0, 0.6);
     top: 0;
     right: 1.75rem;
-    transform: translateY(135%);
+    transform: translateY(65%);
     z-index: 2;
     padding: 0;
   }
@@ -62,10 +62,6 @@
   background-color: rgba(173, 132, 168, 0.8);
   border-color: rgba(173, 132, 168, 0.8);
   color: white;
-}
-
-.form-label {
-  margin-bottom: 0.2rem;
 }
 
 .form-control {
