@@ -21,6 +21,7 @@ const errorMessages = {
       status: 500
     }
   },
+
   userCreation: {
     'missing-item': {
       message: 'Veuillez compléter le(s) champ(s) vide(s).',
@@ -38,25 +39,16 @@ const errorMessages = {
       message: 'Le mot de passe est trop faible.',
       status: 400
     },
-    default: {
-      message: "Une erreur est survenue lors de la création de l'utilisateur.",
-      status: 500
-    }
-  },
-  emailVerification: {
-    'auth/invalid-email': {
-      message: "L'adresse email fournie n'est pas valide.",
-      status: 400
-    },
     'auth/too-many-requests': {
       message: 'Trop de requêtes envoyées. Veuillez réessayer plus tard.',
       status: 429
     },
     default: {
-      message: "Problème d'envoi de l'email de vérification.",
+      message: "Une erreur est survenue lors de la création de l'utilisateur.",
       status: 500
     }
   },
+
   passwordReset: {
     'missing-item': {
       message: 'Veuillez entrer une adresse mail.',
@@ -77,6 +69,7 @@ const errorMessages = {
       status: 500
     }
   },
+
   logout: {
     default: { message: 'Erreur de serveur interne.', status: 500 }
   },
@@ -120,8 +113,6 @@ const handleAuthenticationError = (error, res) =>
   handleError('authentication', error, res)
 const handleUserCreationError = (error, res) =>
   handleError('userCreation', error, res)
-const handleEmailVerificationError = (error, res) =>
-  handleError('emailVerification', error, res)
 const handlePasswordResetError = (error, res) =>
   handleError('passwordReset', error, res)
 const handleLogoutError = (error, res) => handleError('logout', error, res)
@@ -131,7 +122,6 @@ const handleTokenVerificationError = (error, res) =>
 module.exports = {
   handleAuthenticationError,
   handleUserCreationError,
-  handleEmailVerificationError,
   handlePasswordResetError,
   handleLogoutError,
   handleTokenVerificationError

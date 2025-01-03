@@ -1,0 +1,99 @@
+<mat-toolbar *ngIf="isLoggedIn" routerLinkActive="active" class="app-toolbar">
+    <button mat-icon-button (click)="toggleMenu()">
+        <fa-icon [icon]="faBars"></fa-icon>
+    </button>
+    <div class="toolbar-content">
+        <span class="spacer"></span>
+        <a href="https://www.facebook.com/profile.php?id=100086769682698" target="_blank" class="social-link">
+            <i class="bi bi-facebook text-white"></i>
+        </a><a href="https://www.instagram.com/nao_foryou?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+            target="_blank" class="social-link">
+            <i class="bi bi-instagram text-white"></i>
+        </a>
+    </div>
+</mat-toolbar>
+
+<mat-sidenav-container *ngIf="isLoggedIn" class="app-container">
+
+    <mat-sidenav [ngClass]="!isCollapsed ? 'expanded' : ''" [mode]="isMobile ? 'over' : 'side'"
+        [opened]="isMobile ? 'false' : 'true'" class="sidebar">
+
+        <mat-nav-list>
+
+            <!-- Accessoires -->
+            <a mat-list-item href="#!" routerLinkActive="active" class="nav-item">
+                <span class="nav-item-content">
+                    <fa-icon [icon]="faRing"></fa-icon>
+                    <span *ngIf="!isCollapsed" class="nav-item-text">Bijoux</span>
+                </span>
+            </a>
+
+            <!-- Bijoux -->
+            <a mat-list-item href="#!" routerLinkActive="active" class="nav-item">
+                <span class="nav-item-content">
+                    <fa-icon [icon]="faGlasses"></fa-icon>
+                    <span *ngIf="!isCollapsed" class="nav-item-text">Accessoires</span>
+                </span>
+            </a>
+
+            <!-- Vêtements -->
+            <a mat-list-item href="#!" routerLinkActive="active" class="nav-item">
+                <span class="nav-item-content">
+                    <fa-icon [icon]="faTshirt"></fa-icon>
+                    <span *ngIf="!isCollapsed" class="nav-item-text">Vêtements</span>
+                </span>
+            </a>
+
+            <!-- produits d'ambiance -->
+            <a mat-list-item href="#!" routerLinkActive="active" class="nav-item">
+                <span class="nav-item-content">
+                    <fa-icon [icon]="faFire"></fa-icon>
+                    <span *ngIf="!isCollapsed" class="nav-item-text">Produits d'ambiance</span>
+                </span>
+            </a>
+
+            <!-- Beauté -->
+            <a mat-list-item href="#!" routerLinkActive="active" class="nav-item">
+                <span class="nav-item-content">
+                    <fa-icon [icon]="faHandSparkles"></fa-icon>
+                    <span *ngIf="!isCollapsed" class="nav-item-text">Beauté</span>
+                </span>
+            </a>
+
+            <!-- Coffrets-->
+            <a mat-list-item href="#!" routerLinkActive="active" class="nav-item">
+                <span class="nav-item-content">
+                    <fa-icon [icon]="faGift"></fa-icon>
+                    <span *ngIf="!isCollapsed" class="nav-item-text">Coffrets</span>
+                </span>
+            </a>
+
+            <!-- profil -->
+            <a mat-list-item href="profile" routerLinkActive="active" class="nav-item">
+                <span class="nav-item-content">
+                    <fa-icon [icon]="faCog"></fa-icon>
+                    <span *ngIf="!isCollapsed" class="nav-item-text">Profil</span>
+                </span>
+            </a>
+
+            <!-- sign out -->
+            <a mat-list-item (click)="logout()" routerLinkActive="active" class="nav-item">
+                <span class="nav-item-content">
+                    <fa-icon [icon]="faRightFromBracket"></fa-icon>
+                    <span *ngIf="!isCollapsed" class="nav-item-text">Déconnexion</span>
+                </span>
+            </a>
+
+        </mat-nav-list>
+
+        <app-footer></app-footer>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+        <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

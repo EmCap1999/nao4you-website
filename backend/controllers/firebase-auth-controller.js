@@ -1,10 +1,11 @@
 const {
   handleUserCreationError,
-  handleEmailVerificationError,
   handleAuthenticationError,
   handlePasswordResetError,
   handleLogoutError
 } = require('../middleware/auth.error.handler')
+
+const { handleSetUserError } = require('../middleware/firestore.error.handler')
 
 const {
   getAuth,
@@ -12,24 +13,29 @@ const {
   signInWithEmailAndPassword,
   signOut,
   sendEmailVerification,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
+  updateProfile,
+  admin
 } = require('../config/firebase')
+
+const { setUser } = require('../controllers/firestore-user-controller')
 
 const auth = getAuth()
 
 class FirebaseAuthController {
+  //sign in
   loginUser = async (req, res) => {
-    const { email, password } = req.body
+    for (const [, value] of Object.entries(req.body)) {
+      if (!value) {
+        return handleUserCreationError('missing-item', res)
+      }
+    }
 
     try {
-      if (!email || !password) {
-        return handleAuthenticationError('missing-item', res)
-      }
-
       const userCredential = await signInWithEmailAndPassword(
         auth,
-        email,
-        password
+        req.body.email,
+        req.body.password
       )
 
       const user = userCredential.user
@@ -46,34 +52,49 @@ class FirebaseAuthController {
         sameSite: 'strict'
       })
 
-      return res.status(200).send({ userCredential: user.uid })
+      return res.status(200).json({
+        message: 'utilisateur bien connecté.'
+      })
     } catch (error) {
       return handleAuthenticationError(error.code, res)
     }
   }
 
   // sign up
-  registerUser(req, res) {
-    const { email, password } = req.body
-
-    if (!email || !password) {
-      return handleUserCreationError('missing-item', res)
+  async registerUser(req, res) {
+    for (const [, value] of Object.entries(req.body)) {
+      if (!value) {
+        return handleUserCreationError('missing-item', res)
+      }
     }
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(async () => {
-        try {
-          await sendEmailVerification(auth.currentUser)
-          res.status(201).json({
-            message: 'Un email a été envoyé ! Veuillez vérifier votre compte.'
-          })
-        } catch (error) {
-          handleEmailVerificationError(error.code, res)
-        }
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        req.body.email,
+        req.body.password
+      )
+      const user = userCredential.user
+
+      await sendEmailVerification(user)
+
+      await updateProfile(user, {
+        displayName: `${req.body.firstName} ${req.body.lastName}`
       })
-      .catch((error) => {
+
+      await setUser(user.uid, req.body)
+
+      res.status(201).json({
+        message:
+          'Un email de vérification a été envoyé ! Veuillez vérifier votre compte.'
+      })
+    } catch (error) {
+      if (error.code.startsWith('firestore')) {
+        handleSetUserError(error.code, res)
+      } else {
         handleUserCreationError(error.code, res)
-      })
+      }
+    }
   }
 
   // sign out
@@ -91,21 +112,26 @@ class FirebaseAuthController {
   }
 
   // reset password
-  resetPassword(req, res) {
+  async resetPassword(req, res) {
     const { email } = req.body
+
     if (!email) {
       return handlePasswordResetError('missing-item', res)
     }
-    sendPasswordResetEmail(auth, email)
-      .then(() => {
-        res.status(200).json({
-          message:
-            'Un email a bien été envoyé ! Vous pouvez changer de mot de passe.'
-        })
+
+    try {
+      await admin.auth().getUserByEmail(email)
+
+      await sendPasswordResetEmail(auth, email)
+
+      res.status(200).json({
+        message:
+          'Un email a bien été envoyé ! Vous pouvez changer de mot de passe.'
       })
-      .catch((error) => {
-        handlePasswordResetError(error.code, res)
-      })
+    } catch (error) {
+      console.log(error)
+      handlePasswordResetError(error.code, res)
+    }
   }
 }
 

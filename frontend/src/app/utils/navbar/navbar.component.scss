@@ -1,0 +1,120 @@
+/* =========== NAVBAR DESIGN =========== */
+mat-toolbar {
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(173, 132, 168, 1);
+}
+
+mat-sidenav-content {
+    overflow: hidden;
+    background-color: white;
+    overflow-y: auto;
+}
+
+mat-nav-list {
+    height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0;
+}
+
+::ng-deep button[mat-icon-button] {
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(1.05);
+    }
+
+}
+
+.toolbar-content {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    width: 100%;
+
+    .spacer {
+        flex-grow: 0.98;
+    }
+
+    .social-link {
+        text-align: center;
+        display: inline-block;
+        color: white;
+        transition: all 0.5s ease;
+        font-size: x-large;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
+
+
+/* =========== SIDEBAR DESIGN =========== */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    width: 18rem;
+    overflow: hidden;
+    background-color: rgba(173, 132, 168, 1);
+    padding: 0;
+    border-radius: 0;
+}
+
+.nav-item {
+    transition: all 0.3s ease;
+    padding:1.9rem 1.75rem;
+
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    .nav-item-content {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        color: white;
+        font-size: large;
+    }
+}
+
+/* =========== RESPONSIVE DESIGN =========== */
+@supports (height: 100dvh) {
+    .sidebar {
+        height: 90dvh;
+    }
+
+    mat-toolbar {
+        height: 10dvh
+    }
+
+    mat-sidenav-content {
+        height: 90dvh;
+    }
+
+    mat-nav-list {
+        height: 70dvh;
+    }
+
+}
+
+@media (max-width: 30rem) {}
+
+@media (min-width: 30rem) and (max-width: 45rem) {}
+
+@media (min-width: 45rem) and (max-width: 60rem) {}
+
+@media (min-width: 60rem) and (max-width: 75rem) {}
+
+@media (min-width: 75rem) {}

@@ -1,0 +1,68 @@
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+  text-align: center;
+  align-items: center;
+  overflow-y: auto;
+  padding: 0;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.invalid-feedback {
+  font-size: small;
+  text-align: left;
+}
+
+.link-custom {
+  color: rgba(185, 136, 174, 255);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link-custom:hover {
+  color: rgba(185, 136, 174, 255);
+}
+
+.fw-medium {
+  font-weight: 600;
+}
+
+.btn-custom {
+  background-color: rgba(173, 132, 168, 255);
+  border-color: rgba(173, 132, 168, 255);
+  color: white;
+}
+
+.btn-custom:hover {
+  background-color: rgba(173, 132, 168, 0.8);
+  border-color: rgba(173, 132, 168, 0.8);
+  color: white;
+}
+
+.alert-success {
+  background-color: rgba(174, 132, 170, 0.1);
+  border-color: rgba(174, 132, 170, 0.2);
+}
+
+.alert-danger {
+  background-color: rgba(255, 0, 0, 0.1);
+  border-color: rgba(255, 0, 0, 0.2);
+}
+
+.form-check{
+  position: relative;
+  text-align: start;
+  margin-bottom: 1rem;
+}
+
+ngx-intl-tel-input {
+  text-align: start;
+}
+
+@supports (height: 100dvh) {
+  .sign-up {
+    height: 85dvh;
+  }
+}

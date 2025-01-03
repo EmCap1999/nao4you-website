@@ -3,6 +3,19 @@ const firebase = require('firebase/app')
 const admin = require('firebase-admin')
 const serviceAccount = require('../firebaseService.json')
 
+const {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithCustomToken,
+  signOut,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  updateProfile
+} = require('firebase/auth')
+
+const { getFirestore } = require('firebase-admin/firestore')
+
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -18,15 +31,7 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 })
 
-const {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signInWithCustomToken,
-  signOut,
-  sendEmailVerification,
-  sendPasswordResetEmail
-} = require('firebase/auth')
+const firestore = getFirestore()
 
 module.exports = {
   getAuth,
@@ -36,5 +41,7 @@ module.exports = {
   signOut,
   sendEmailVerification,
   sendPasswordResetEmail,
-  admin
+  updateProfile,
+  admin,
+  firestore
 }

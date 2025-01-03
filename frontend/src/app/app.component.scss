@@ -1,0 +1,9 @@
+router-outlet {
+    height: 100vh;
+}
+
+@supports (height: 100dvh) {
+    router-outlet {
+        height: 100dvh;
+    }
+}

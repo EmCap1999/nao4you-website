@@ -1,27 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../_services/auth.service';
+import { Router } from '@angular/router';
+import { assetsUrl } from '../../config/assets.url';
+
+import {
+  faUser,
+  faKey,
+  faEye,
+  faEyeSlash
+} from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  form: any = {
-    email: null,
-    password: null,
-  };
+  form: any = {};
   isLoggedIn: boolean = false;
   isLoginFailed: boolean = false;
+  passwordVisible: boolean = false;
   message: string = '';
+  facebookUrl: string = assetsUrl.facebookUrl;
+  logoUrl: string = assetsUrl.logoUrl;
 
-  constructor(private authService: AuthService) {}
+  faUser = faUser;
+  faKey = faKey;
+  faEye = faEye;
+  faEyeSlash = faEyeSlash;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.authService.verifyToken().subscribe({
-      next: (response) => {
-        console.log(response);
+      next: () => {
         this.isLoggedIn = true;
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         this.message = err.error.message;
@@ -30,34 +48,21 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  togglePassword() {
+    this.passwordVisible = !this.passwordVisible;
+  }
+
   onSubmit(): void {
     this.authService.login(this.form).subscribe({
-      next: (response) => {
-        console.log(response);
+      next: () => {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         this.message = err.error.message;
         this.isLoginFailed = true;
       },
     });
-  }
-
-  logout(): void {
-    this.authService.logout().subscribe({
-      next: () => {
-        this.isLoggedIn = false;
-        this.resetForm();
-      },
-      error: (err) => {
-        this.message = err.error.message;
-      },
-    });
-  }
-
-  resetForm(): void {
-    this.form.email = null;
-    this.form.password = null;
   }
 }
