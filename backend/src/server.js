@@ -19,7 +19,7 @@ async function startServer() {
 		app.use(router);
 
 		app.listen(PORT, () => {
-			console.log("✅ Node.js server is running.");
+			console.log("✅ Server is running.");
 		});
 	} catch (error) {
 		console.error("❌ Server startup error:", error);
