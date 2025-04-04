@@ -16,7 +16,7 @@ management, and profile management to enhance the user experience.
 Nao4You consists of two separate parts: the **backend** and the **frontend**, which require additional set up.
 
 ### Install Global Dependencies
-Run the following command to install the required Node.js dependencies:
+Run the following command to install the required dependencies:
 ```sh
 npm install
 ```
