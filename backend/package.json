@@ -1,27 +1,27 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "V2 Nao4You backend",
-  "main": "src/server.js",
-  "scripts": {
-    "start": "node src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/EmCap1999/nao4you-website.git"
-  },
-  "author": "EmCap1999",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/EmCap1999/nao4you-website/bakend/issues"
-  },
-  "homepage": "https://github.com/EmCap1999/nao4you-website/backend#readme",
-  "dependencies": {
-    "cookie-parser": "^1.4.7",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "firebase": "^11.4.0",
-    "firebase-admin": "^13.2.0"
-  }
+	"name": "backend",
+	"version": "1.0.0",
+	"description": "V2 Nao4You backend",
+	"main": "src/server.js",
+	"scripts": {
+		"start": "node src/server.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/EmCap1999/nao4you-website.git"
+	},
+	"author": "EmCap1999",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/EmCap1999/nao4you-website/bakend/issues"
+	},
+	"homepage": "https://github.com/EmCap1999/nao4you-website/backend#readme",
+	"dependencies": {
+		"cookie-parser": "^1.4.7",
+		"dotenv": "^16.4.7",
+		"express": "^4.21.2",
+		"firebase": "^11.4.0",
+		"firebase-admin": "^13.2.0"
+	}
 }
