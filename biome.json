@@ -8,7 +8,7 @@
 	"formatter": {
 		"enabled": true,
 		"useEditorconfig": true,
-		"formatWithErrors": false,
+		"formatWithErrors": true,
 		"indentStyle": "space",
 		"indentSize": 1,
 		"indentWidth": 2,
