@@ -7,11 +7,17 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": ["node_modules/**", "**/node_modules/**", "dist/**", "build/**"]
+		"ignore": [
+			"node_modules/**",
+			"**/node_modules/**",
+			"dist/**",
+			"build/**"
+		]
 	},
 	"formatter": {
 		"enabled": true,
-		"indentStyle": "tab"
+		"indentStyle": "tab",
+		"indentSize": 1
 	},
 	"organizeImports": {
 		"enabled": true
