@@ -9,6 +9,7 @@ on:
       - '**/*.ts'
       - '**/*.tsx'
       - '**/*.jsx'
+      - '**/*.json'
 
 jobs:
   lint_and_format:
