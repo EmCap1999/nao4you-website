@@ -13,8 +13,13 @@ management, and profile management to enhance the user experience.
 - **Frontend:** Angular
 
 ## 🔧 Setup Instructions
+Nao4You consists of two separate parts: the **backend** and the **frontend**, which require additional set up.
 
-Nao4You consists of two separate parts: the **backend** and the **frontend**, which need to be set up individually.
+### Install Global Dependencies
+Run the following command to install the required Node.js dependencies:
+```sh
+npm install
+```
 
 ### 🚀 Backend Setup
 
