@@ -22,7 +22,7 @@ async function startServer() {
 			console.log("✅ Node.js server is running.");
 		});
 	} catch (error) {
-		console.error("❌ Server startup error:", error);
+		console.error("❌ Node Server startup error:", error);
 		console.error(getServerErrorMessage(error.code));
 		process.exit(1);
 	}
