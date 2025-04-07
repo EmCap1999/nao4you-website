@@ -6,9 +6,6 @@ on:
       - main
     paths:
       - '**/*.js'
-      - '**/*.ts'
-      - '**/*.tsx'
-      - '**/*.jsx'
       - '**/*.json'
 
 jobs:
