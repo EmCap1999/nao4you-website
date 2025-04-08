@@ -58,7 +58,7 @@ npm install
 ### 4️⃣ Start the Server
 Launch the backend server with:
 ```sh
-npm start
+npm run start
 ```
 
 ### 5️⃣ Test Endpoints Using Postman
