@@ -1,14 +1,12 @@
 const { admin } = require('../configs/firebase.auth.config')
-const { getFirebaseErrorMessage } = require('../errors/firebase.errors')
-Ò
+const { handleFirebaseError } = require('../errors/firebase.errors')
+const { validateRequest } = require('../utils/validation.utils')
 
 const verifyToken = async (req, res, next) => {
   const idToken = req.cookies.access_token
 
-  if (!idToken) {
-    return res
-      .status(403)
-      .json({ error: 'Aucun token fourni lors de la vérification.' })
+  if (validateRequest({ token: idToken }, res, 403)) {
+    return
   }
 
   try {
@@ -16,8 +14,7 @@ const verifyToken = async (req, res, next) => {
     next()
   } catch (error) {
     console.error('Error verifying token:', error)
-    const errorMessage = getFirebaseErrorMessage(error.code)
-    return res.status(403).json({ error: errorMessage })
+    return handleFirebaseError(error, res)
   }
 }
 
