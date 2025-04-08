@@ -82,12 +82,10 @@ class FirebaseAuthController {
     try {
       const { email } = req.body
       await sendPasswordResetEmail(auth, email)
-      return res
-        .status(200)
-        .json({
-          message:
-            'Un email de réinitialisation vous sera envoyé si le compte existe.',
-        })
+      return res.status(200).json({
+        message:
+          'Un email de réinitialisation vous sera envoyé si le compte existe.',
+      })
     } catch (error) {
       return handleFirebaseError(error, res)
     }
