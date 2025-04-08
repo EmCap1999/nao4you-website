@@ -7,12 +7,16 @@ function getFirebaseErrorInfo(errorCode) {
       return { message: "L'adresse e-mail n'est pas valide.", status: 400 }
     case 'auth/weak-password':
       return { message: 'Le mot de passe est trop faible.', status: 400 }
-
-    // Conflicts (409 Conflict)
-    case 'auth/email-already-in-use':
+    case 'auth/argument-error':
       return {
-        message: "L'adresse e-mail est déjà utilisée par un autre compte.",
-        status: 409,
+        message: 'Format de token invalide. Veuillez vous reconnecter.',
+        status: 400,
+      }
+    case 'auth/admin-restricted-operation':
+      return {
+        message:
+          "Opération non autorisée. Veuillez fournir les informations d'authentification.",
+        status: 400,
       }
 
     // Authentication errors (401 Unauthorized)
@@ -34,17 +38,11 @@ function getFirebaseErrorInfo(errorCode) {
         status: 401,
       }
 
-    // Args/Validations errors (400 Bad Request)
-    case 'auth/argument-error':
+    // Conflicts (409 Conflict)
+    case 'auth/email-already-in-use':
       return {
-        message: 'Format de token invalide. Veuillez vous reconnecter.',
-        status: 400,
-      }
-    case 'auth/admin-restricted-operation':
-      return {
-        message:
-          "Opération non autorisée. Veuillez fournir les informations d'authentification.",
-        status: 400,
+        message: "L'adresse e-mail est déjà utilisée par un autre compte.",
+        status: 409,
       }
 
     // Token errors (403 Forbidden)

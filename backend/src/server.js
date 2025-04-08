@@ -9,7 +9,7 @@ const PORT = process.env.PORT
 
 async function startServer() {
   if (!process.env.PORT) {
-    console.error('❌ Error: Please define the PORT in your .env file.')
+    console.error('Please define the PORT in your .env file.')
     process.exit(1)
   }
 
@@ -19,15 +19,15 @@ async function startServer() {
     app.use(router)
 
     app.use((err, req, res, next) => {
-      console.error('❌ Server error:', err)
+      console.error('Server error:', err)
       return handleServerError(err, res)
     })
 
     app.listen(PORT, () => {
-      console.log(`✅ Node.js server is running on port ${PORT}.`)
+      console.log(`🚀 Server is running on port ${PORT}.`)
     })
   } catch (error) {
-    console.error('❌ Node Server startup error:', error)
+    console.error('Node Server startup error:', error)
     process.exit(1)
   }
 }
@@ -35,7 +35,7 @@ async function startServer() {
   try {
     await startServer()
   } catch (error) {
-    console.error('❌ Failed to start the server:', error)
+    console.error('Failed to start the server:', error)
     process.exit(1)
   }
 })()

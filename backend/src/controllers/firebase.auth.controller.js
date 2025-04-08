@@ -18,7 +18,6 @@ class FirebaseAuthController {
 
     try {
       const { email, password } = req.body
-
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -26,9 +25,9 @@ class FirebaseAuthController {
       )
       await sendEmailVerification(userCredential.user)
 
-      res
+      return res
         .status(201)
-        .json({ message: 'Un email de vérification a été envoyé !' })
+        .json({ message: `Un email de vérification a bien été envoyé.` })
     } catch (error) {
       return handleFirebaseError(error, res)
     }
@@ -39,7 +38,6 @@ class FirebaseAuthController {
 
     try {
       const { email, password } = req.body
-
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
@@ -47,7 +45,6 @@ class FirebaseAuthController {
       )
       const user = userCredential.user
       const idToken = await user.getIdToken()
-
       if (validateRequest({ token: idToken }, res, 401)) return
 
       res.cookie('access_token', idToken, {
@@ -57,7 +54,7 @@ class FirebaseAuthController {
       })
 
       return res.status(200).json({
-        message: `L'utilisateur ${user.email} est connecté.`,
+        message: `Tentative de connexion de ${user.email}.`,
       })
     } catch (error) {
       return handleFirebaseError(error, res)
@@ -71,7 +68,9 @@ class FirebaseAuthController {
 
       await signOut(auth)
       res.clearCookie('access_token')
-      res.status(200).json({ message: 'Utilisateur déconnecté avec succès.' })
+      return res
+        .status(200)
+        .json({ message: `Déconnexion de ${currentUser.email}.` })
     } catch (error) {
       return handleFirebaseError(error, res)
     }
@@ -82,18 +81,15 @@ class FirebaseAuthController {
 
     try {
       const { email } = req.body
-
       await sendPasswordResetEmail(auth, email)
-
-      res.status(200).json({
-        message:
-          'Si votre compte a déjà été créé, vous devriez recevoir un email pour changer de mot de passe.',
-      })
+      return res
+        .status(200)
+        .json({
+          message:
+            'Un email de réinitialisation vous sera envoyé si le compte existe.',
+        })
     } catch (error) {
-      res.status(200).json({
-        message:
-          'Si votre compte a déjà été créé, vous devriez recevoir un email pour changer de mot de passe.',
-      })
+      return handleFirebaseError(error, res)
     }
   }
 }

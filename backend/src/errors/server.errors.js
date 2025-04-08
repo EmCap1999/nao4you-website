@@ -2,25 +2,18 @@ function getServerErrorInfo(errorCode) {
   switch (errorCode) {
     case 'EACCES':
       return {
-        message: "Permission refusée. Veuillez vérifier vos droits d'accès.",
+        message: "Permission refusée. Vérifiez vos droits d'accès.",
         status: 403,
       }
     case 'EADDRINUSE':
       return {
-        message:
-          'Adresse déjà utilisée. Veuillez vérifier si le port est déjà utilisé.',
+        message: 'Port déjà utilisé. Un autre processus l’occupe peut-être.',
         status: 409,
-      }
-    case 'ENOTFOUND':
-      return {
-        message:
-          'Serveur non trouvé. Veuillez vérifier la configuration de votre serveur.',
-        status: 404,
       }
     case 'ECONNREFUSED':
       return {
         message:
-          'Connexion refusée. Veuillez vérifier la connexion de votre serveur.',
+          'Connexion refusée. Vérifiez que le serveur distant est actif.',
         status: 503,
       }
     case 'ETIMEDOUT':
@@ -30,25 +23,16 @@ function getServerErrorInfo(errorCode) {
       }
     case 'ENETUNREACH':
       return {
-        message:
-          'Réseau inaccessible. Veuillez vérifier votre connexion réseau.',
+        message: 'Réseau inaccessible. Vérifiez votre connexion réseau.',
         status: 502,
       }
-    case 'ECONNRESET':
-      return {
-        message: 'La connexion a été réinitialisée. Veuillez réessayer.',
-        status: 502,
-      }
-    case 'EPIPE':
-      return {
-        message: 'Connexion interrompue de manière inattendue.',
-        status: 500,
-      }
+    case 'ENOTFOUND':
+      return { message: 'Serveur ou ressource introuvable.', status: 404 }
+
     default:
       console.error(`Erreur serveur non gérée: ${errorCode}`)
       return {
-        message:
-          "Une erreur inconnue s'est produite lors du démarrage du serveur.",
+        message: "Une erreur inconnue s'est produite au lancement du serveur.",
         status: 500,
       }
   }

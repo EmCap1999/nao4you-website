@@ -11,7 +11,7 @@ const verifyToken = async (req, res, next) => {
 
   try {
     req.user = await admin.auth().verifyIdToken(idToken)
-    next()
+    return next()
   } catch (error) {
     console.error('Error verifying token:', error)
     return handleFirebaseError(error, res)
