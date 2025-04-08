@@ -52,7 +52,7 @@ This file is required to grant Node.js access to Firebase's administrative featu
 ### 3️⃣ Install Dependencies
 Run the following command to install the required Node.js dependencies:
 ```sh
-npm update
+npm install
 ```
 
 ### 4️⃣ Start the Server

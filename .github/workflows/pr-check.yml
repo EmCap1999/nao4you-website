@@ -1,0 +1,31 @@
+name: 🛡️ PR Check
+
+on:
+  pull_request:
+    branches: [ main, dev ]
+
+jobs:
+  biome-check:
+    name: 🔍 Lint & Format with Biome
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🧼 Run Biome (check + format + lint)
+        run: |
+          npx @biomejs/biome check --no-errors-on-unmatched
+          npx @biomejs/biome lint --no-errors-on-unmatched
+
+      # Optionally run tests here
+      # - name: 🧪 Run tests
+      #   run: npm test

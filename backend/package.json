@@ -11,7 +11,11 @@
     "type": "git",
     "url": "git+https://github.com/EmCap1999/nao4you-website.git"
   },
-  "author": "EmCap1999",
+  "author": {
+    "name": "Manu Caputo",
+    "email": "caputoemmanuel1999@gmail.com",
+    "url": "https://github.com/EmCap1999"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/EmCap1999/nao4you-website/bakend/issues"
