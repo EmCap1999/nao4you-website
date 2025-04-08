@@ -1,15 +1,20 @@
 {
-  "name": "nao4you",
-  "version": "1.0.0",
+  "author": {
+    "name": "Manu Caputo",
+    "email": "caputoemmanuel1999@gmail.com",
+    "url": "https://github.com/EmCap1999"
+  },
   "scripts": {
-    "postinstall": "git config core.hooksPath .husky"
+    "prepare": "husky"
   },
   "lint-staged": {
-    "*.{js, json}": ["biome check --write", "biome format --write"]
+    "*.{js,json}": [
+      "npx @biomejs/biome check --write --no-errors-on-unmatched"
+    ],
+    "!**/node_modules/**/*": []
   },
-
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
+    "@biomejs/biome": "1.9.4",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0"
   }
