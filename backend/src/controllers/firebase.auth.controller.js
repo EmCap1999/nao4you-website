@@ -7,23 +7,17 @@ const {
   sendPasswordResetEmail,
 } = require('../configs/firebase.auth.config')
 
-const {
-  getFirebaseErrorMessage,
-  validateRequiredFields,
-} = require('../errors/firebase.errors')
+const { handleFirebaseError } = require('../errors/firebase.errors')
+const { validateRequest } = require('../utils/validation.utils')
 
 const auth = getAuth()
 
 class FirebaseAuthController {
   async SignUp(req, res) {
-    const missingFields = validateRequiredFields(req.body)
-    if (missingFields.length > 0) {
-      return res.status(400).json({ errors: missingFields })
-    }
+    if (validateRequest(req.body, res)) return
 
     try {
       const { email, password } = req.body
-
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -31,24 +25,19 @@ class FirebaseAuthController {
       )
       await sendEmailVerification(userCredential.user)
 
-      res
+      return res
         .status(201)
-        .json({ message: 'Un email de vérification a été envoyé !' })
+        .json({ message: `Un email de vérification a bien été envoyé.` })
     } catch (error) {
-      const errorMessage = getFirebaseErrorMessage(error.code)
-      return res.status(500).json({ error: errorMessage })
+      return handleFirebaseError(error, res)
     }
   }
 
   async SignIn(req, res) {
-    const missingFields = validateRequiredFields(req.body)
-    if (missingFields.length > 0) {
-      return res.status(400).json({ errors: missingFields })
-    }
+    if (validateRequest(req.body, res)) return
 
     try {
       const { email, password } = req.body
-
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
@@ -56,52 +45,49 @@ class FirebaseAuthController {
       )
       const user = userCredential.user
       const idToken = await user.getIdToken()
+      if (validateRequest({ token: idToken }, res, 401)) return
 
-      if (idToken) {
-        res.cookie('access_token', idToken, {
-          httpOnly: true,
-          secure: true,
-          sameSite: 'strict',
-        })
-        return res
-          .status(200)
-          .json({ message: `L'utilisateur ${user.email} est connecté.` })
-      }
-      const errorMessage = "Token d'authentification manquant."
-      return res.status(500).json({ error: errorMessage })
+      res.cookie('access_token', idToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'strict',
+      })
+
+      return res.status(200).json({
+        message: `Tentative de connexion de ${user.email}.`,
+      })
     } catch (error) {
-      const errorMessage = getFirebaseErrorMessage(error.code)
-      return res.status(500).json({ error: errorMessage })
+      return handleFirebaseError(error, res)
     }
   }
 
   async SignOut(req, res) {
     try {
+      const currentUser = auth.currentUser
+      if (validateRequest({ currentUser: currentUser }, res, 401)) return
+
       await signOut(auth)
       res.clearCookie('access_token')
-      res.status(200).json({ message: 'Utilisateur déconnecté avec succès.' })
+      return res
+        .status(200)
+        .json({ message: `Déconnexion de ${currentUser.email}.` })
     } catch (error) {
-      const errorMessage = getFirebaseErrorMessage(error.code)
-      return res.status(500).json({ error: errorMessage })
+      return handleFirebaseError(error, res)
     }
   }
 
   async ResetPassword(req, res) {
-    const missingFields = validateRequiredFields(req.body)
-    if (missingFields.length > 0) {
-      return res.status(400).json({ errors: missingFields })
-    }
+    if (validateRequest(req.body, res)) return
 
     try {
       const { email } = req.body
-
       await sendPasswordResetEmail(auth, email)
-      res.status(200).json({
-        message: 'Email envoyé avec succès pour changer de mot de passe.',
+      return res.status(200).json({
+        message:
+          'Un email de réinitialisation vous sera envoyé si le compte existe.',
       })
     } catch (error) {
-      const errorMessage = getFirebaseErrorMessage(error.code)
-      return res.status(500).json({ error: errorMessage })
+      return handleFirebaseError(error, res)
     }
   }
 }
