@@ -1,2 +1,8 @@
-node_modules
-package-lock.json
+# Root
+.idea
+**/node_modules/
+.husky/_
+
+# Backend
+**/.env
+backend/src/FirebaseService.json

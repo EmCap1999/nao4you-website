@@ -7,12 +7,12 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["**/node_modules/**"]
+    "ignore": ["package-lock.json", "node_modules/**/*"]
   },
   "formatter": {
     "enabled": true,
     "useEditorconfig": true,
-    "formatWithErrors": true,
+    "formatWithErrors": false,
     "indentStyle": "space",
     "indentWidth": 2,
     "lineEnding": "lf",
@@ -26,25 +26,73 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": false,
+      "complexity": {
+        "noForEach": "error",
+        "noStaticOnlyClass": "error",
+        "noUselessSwitchCase": "error",
+        "useDateNow": "error",
+        "useFlatMap": "error"
+      },
+      "correctness": {
+        "noInvalidBuiltinInstantiation": "error"
+      },
+      "style": {
+        "noNegationElse": "off",
+        "useExplicitLengthCheck": "error",
+        "useForOf": "error",
+        "useNodejsImportProtocol": "error",
+        "useNumberNamespace": "error",
+        "useThrowNewError": "error"
+      },
+      "suspicious": {
+        "noDoubleEquals": "error",
+        "noThenProperty": "error",
+        "useErrorMessage": "error",
+        "useNumberToFixedDigitsArgument": "error"
+      }
     }
   },
   "javascript": {
     "formatter": {
       "jsxQuoteStyle": "double",
       "quoteProperties": "asNeeded",
-      "trailingCommas": "es5",
-      "semicolons": "always",
+      "trailingCommas": "all",
+      "semicolons": "asNeeded",
       "arrowParentheses": "always",
       "bracketSameLine": false,
       "quoteStyle": "single",
       "attributePosition": "auto",
       "bracketSpacing": true
-    }
+    },
+    "globals": ["Global1"]
   },
-  "json": {
-    "formatter": {
-      "indentStyle": "space"
+  "overrides": [
+    {
+      "include": ["tests/**"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noDoubleEquals": "off"
+          }
+        }
+      }
+    },
+    {
+      "include": ["tests/**"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noDoubleEquals": "off"
+          }
+        }
+      }
+    },
+    {
+      "include": ["*.json"],
+      "formatter": {
+        "indentWidth": 2
+      }
     }
-  }
+  ]
 }

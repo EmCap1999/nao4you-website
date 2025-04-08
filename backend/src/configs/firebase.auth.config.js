@@ -1,7 +1,7 @@
-require('dotenv').config();
-const firebase = require('firebase/app');
-const admin = require('firebase-admin');
-const serviceAccount = require('../firebaseService.json');
+require('dotenv').config()
+const firebase = require('firebase/app')
+const admin = require('firebase-admin')
+const serviceAccount = require('../firebaseService.json')
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -10,7 +10,7 @@ const firebaseConfig = {
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
-};
+}
 
 const {
   getAuth,
@@ -19,22 +19,22 @@ const {
   signOut,
   sendEmailVerification,
   sendPasswordResetEmail,
-} = require('firebase/auth');
+} = require('firebase/auth')
 
 // Initialize Firebase Client SDK (Firebase Web SDK)
-if (!firebase.getApps().length) {
-  firebase.initializeApp(firebaseConfig);
+if (firebase.getApps().length === 0) {
+  firebase.initializeApp(firebaseConfig)
 } else {
-  firebase.getApp();
+  firebase.getApp()
 }
 
 // Initialize Firebase Admin SDK
 if (admin.apps.length === 0) {
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-  });
+  })
 } else {
-  admin.app();
+  admin.app()
 }
 
 module.exports = {
@@ -45,4 +45,4 @@ module.exports = {
   sendEmailVerification,
   sendPasswordResetEmail,
   admin,
-};
+}
