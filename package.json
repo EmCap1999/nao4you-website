@@ -5,7 +5,9 @@
     "url": "https://github.com/EmCap1999"
   },
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "precommit:setup": "npm run update-all",
+    "update-all": "npm update && cd backend && npm update"
   },
   "lint-staged": {
     "*.{js,json}": [

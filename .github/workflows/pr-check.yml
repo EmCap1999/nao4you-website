@@ -24,8 +24,3 @@ jobs:
       - name: 🧼 Run Biome (check + format + lint)
         run: |
           npx @biomejs/biome check --no-errors-on-unmatched
-          npx @biomejs/biome lint --no-errors-on-unmatched
-
-      # Optionally run tests here
-      # - name: 🧪 Run tests
-      #   run: npm test
